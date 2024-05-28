@@ -105,7 +105,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         else if (evt.getSource() == sair)
             dispose();
         else if (evt.getSource() == ajudaAutorItem)
-            JOptionPane.showMessageDialog(null, "Autor: Otoniel Emanuel");
+            new SobreOAutor();
 
     }
 
