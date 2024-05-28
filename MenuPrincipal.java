@@ -10,7 +10,6 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 import SwingComponents.*;
-import Calendario.*;
 
 public class MenuPrincipal extends JFrame implements ActionListener {
 
@@ -89,30 +88,28 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         estadoDoLivroItem.addActionListener(this);
     }
 
-
-    
     public void actionPerformed(ActionEvent evt) {
-        /*
-         * if (evt.getSource() == novoLivroItem)
-         * new CadaverVisao();
-         * if (evt.getSource() == generoLivroItem)
-         * Tabela2.editarNovosItems("Nacionalidades.tab", "Nova Nacionalidade");
-         * 
-         * Tabela2.editarNovosItems("Funcionarios.tab", "Novo Funcionario");
-         * if (evt.getSource() == formaDePagamentoItem)
-         * Tabela2.editarNovosItems("TipoDocumentos.tab", "Novo Tipo de Documento");
-         * if (evt.getSource() == estadoDoLivroItem)
-         * Tabela2.editarNovosItems("CausaDaMorte.tab", "Nova Causa de Morte");
-         * 
-         * /*else if (evt.getSource() == sair)
-         * dispose();
-         * else if (evt.getSource() == ajudaAutorItem)
-         * JOptionPane.showMessageDialog(null, "Autor: Osvaldo Ramos");
-         */
+
+        if (evt.getSource() == novoLivroItem)
+            new LivroVisao();
+
+        if (evt.getSource() == generoLivroItem)
+            Tabela2.editarNovosItems("Genero.tab", "Novo genero de livro");
+
+        if (evt.getSource() == formaDePagamentoItem)
+            Tabela2.editarNovosItems("FormasDePagamento.tab", "Nova forma de pagamento");
+
+        if (evt.getSource() == estadoDoLivroItem)
+            Tabela2.editarNovosItems("EstadoDoLivro.tab", "Novo estado do livro");
+
+        else if (evt.getSource() == sair)
+            dispose();
+        else if (evt.getSource() == ajudaAutorItem)
+            JOptionPane.showMessageDialog(null, "Autor: Otoniel Emanuel");
+
     }
 
-    public static void main(String [] args) 
-    {
+    public static void main(String[] args) {
         Vector_Tabelas.inic();
         new MenuPrincipal();
     }
