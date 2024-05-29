@@ -5,10 +5,6 @@ N� 1735
 Data: 7 de Outubro de 2003
 Objetivo : 
 ******************************************************************************/
-
-
-
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;

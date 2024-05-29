@@ -24,8 +24,6 @@ Este projecto tem o objectivo de gerir a venda de livros, incluindo o registo de
 	int id
 	String titulo
 	String autor
-	String editora
-	String isbn
 	double preco
 	int quantidadeEstoque
 	
