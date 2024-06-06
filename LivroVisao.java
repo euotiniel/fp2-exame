@@ -29,17 +29,18 @@ public class LivroVisao extends JFrame {
 	}
 
 	class PainelCentro extends JPanel {
-		JTextField idJTF, tituloJTF, autorJTF, precoJTF; 
-		JComboBox<String> generoJCB, estadoDoLivroJCB; 
-		JSpinner quantidadeEstoqueJTF;
+		JTextField idJTF, tituloJTF, autorJTF, precoJTF;
+		JComboBox<String> generoJCB, estadoDoLivroJCB;
+		JSpinner quantidadeEstoqueJS;
+
 		public PainelCentro() {
-			setLayout( new GridLayout(4, 2, 5, 10));
+			setLayout(new GridLayout(4, 2, 5, 10));
 
 			// Linha 1
-			
+
 			add(new Label("ID"));
 			add(idJTF = new JTextField());
- 
+
 			add(new Label("Título do livro"));
 			add(tituloJTF = new JTextField());
 
@@ -47,7 +48,7 @@ public class LivroVisao extends JFrame {
 
 			add(new Label("Autor"));
 			add(autorJTF = new JTextField());
- 
+
 			add(new Label("Gênero do livro"));
 			add(generoJCB = UInterfaceBox.createJComboBoxPersonalTab2("Genero.tab"));
 
@@ -55,14 +56,52 @@ public class LivroVisao extends JFrame {
 
 			add(new Label("Preço"));
 			add(precoJTF = new JTextField());
- 
+
 			add(new Label("Quantidade"));
-			add(quantidadeEstoqueJTF = new JSpinner());
+			add(quantidadeEstoqueJS = new JSpinner());
 
 			// Linha 4
 
 			add(new Label("Estado do livro"));
 			add(estadoDoLivroJCB = UInterfaceBox.createJComboBoxPersonalTab2("EstadoDoLivro.tab"));
+		}
+
+		// Methods GET
+		public int getId() {
+			return Integer.parseInt(idJTF.getText().trim());
+		}
+
+		public String getTitulo() {
+			return tituloJTF.getText().trim();
+		}
+
+		public String getAutor() {
+			return autorJTF.getText().trim();
+		}
+
+		public String getGenero() {
+			return String.valueOf(generoJCB.getSelectedItem());
+		}
+
+		public String getEstado() {
+			return String.valueOf(estadoDoLivroJCB.getSelectedItem());
+		}
+
+		public double getPreco() {
+			return Integer.parseInt(precoJTF.getText().trim());
+		}
+
+		public int getQuantidadeEstoque() {
+			return (Integer) quantidadeEstoqueJS.getValue();
+		}
+
+		// Save
+
+		public void cadastrar() {
+			LivroModelo modelo = new LivroModelo(getId(), getTitulo(), getAutor(), getGenero(), getEstado(), getPreco(),
+					getQuantidadeEstoque());
+
+		JOptionPane.showMessageDialog(null, modelo.toString());
 		}
 	}
 
@@ -77,22 +116,22 @@ public class LivroVisao extends JFrame {
 
 		public void actionPerformed(ActionEvent evt) {
 			if (evt.getSource() == cadastrarJB) {
-				JOptionPane.showMessageDialog(null, "Cadastrado");
+				centro.cadastrar();
 			}
 
 		}
 	}
 
-	public void dfineTheme() 
-	 {
-        try {
-            for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-        }
-    }
-} 
+	public void dfineTheme() {
+		try {
+			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName())) {
+					UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
+			}
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| UnsupportedLookAndFeelException e) {
+		}
+	}
+}
