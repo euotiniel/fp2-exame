@@ -6,7 +6,6 @@ Ficheiro: Analise.java
 Data: 20.05.2024
 --------------------------------------*/
 
-
 /*
 1. Objectivo
 Este projecto tem o objectivo de gerir a venda de livros, incluindo o registo de livros disponíveis, clientes, e as transações de venda realizadas.
@@ -24,8 +23,10 @@ Este projecto tem o objectivo de gerir a venda de livros, incluindo o registo de
 	int id
 	String titulo
 	String autor
+	String genero
 	double preco
 	int quantidadeEstoque
+	Setring estado
 	
 - ClienteModelo
 	int id
