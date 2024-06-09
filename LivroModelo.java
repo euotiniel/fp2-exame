@@ -11,8 +11,9 @@ import java.awt.*;
 import java.awt.event.*;
 import SwingComponents.*;
 import Calendario.*;
+import java.io.*;
 
-public class LivroModelo {
+public class LivroModelo implements RegistGeneric {
 
     int id;
     StringBufferModelo titulo, autor, genero, estado;
@@ -114,4 +115,51 @@ public class LivroModelo {
 
         return str;
     }
+
+    // Tamanho geral de cada registro/modelo
+    public long sizeof() {
+        try {
+            return 150 * 2 + 4 + 6 + 3;
+        } catch (Exception ex) {
+            return 0;
+        }
+    } 
+
+    public void write(RandomAccessFile stream) {
+        try {
+            stream.writeInt(id);
+        titulo.write(stream);
+        autor.write(stream);
+        genero.write(stream);
+        estado.write(stream);
+        stream.writeDouble(preco);
+        stream.writeInt(quantidadeEstoque);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Falha ao tentar escrever...");
+        }
+    }
+
+    public void read(RandomAccessFile stream) {
+        try {
+            id = stream.readInt();
+        titulo.read(stream);
+        autor.read(stream);
+        genero.read(stream);
+        estado.read(stream);
+        preco = stream.readDouble();
+        quantidadeEstoque = stream.readInt();
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Falha ao tentar ler...");
+        }
+    }
+
+    public void salvar () {
+        LivroFile file = new LivroFile();
+        file.salvarDados(this);
+    }
+
 }

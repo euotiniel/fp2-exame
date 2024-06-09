@@ -7,9 +7,10 @@ Data: 28.05.2024
 --------------------------------------*/
 
 import javax.swing.*;
-import java.awt.event.*;
 import java.awt.*;
+import java.awt.event.*;
 import SwingComponents.*;
+import Calendario.*;
 
 public class MenuPrincipal extends JFrame implements ActionListener {
 
@@ -29,6 +30,10 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         setSize(600, 400);
         setLocationRelativeTo(null);
         setVisible(true);
+
+        // Define o ícone da aplicação
+        // ImageIcon img = new ImageIcon("caminho/para/seu/icone.png");
+        // frame.setIconImage(img.getImage());
     }
 
     public void instanciarObjectos() {

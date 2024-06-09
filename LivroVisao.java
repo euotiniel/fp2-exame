@@ -101,7 +101,9 @@ public class LivroVisao extends JFrame {
 			LivroModelo modelo = new LivroModelo(getId(), getTitulo(), getAutor(), getGenero(), getEstado(), getPreco(),
 					getQuantidadeEstoque());
 
-		JOptionPane.showMessageDialog(null, modelo.toString());
+			JOptionPane.showMessageDialog(null, modelo.toString());
+
+			modelo.salvar();
 		}
 	}
 
