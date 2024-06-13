@@ -53,7 +53,11 @@ Este projecto tem o objectivo de gerir a venda de livros, incluindo o registo de
 - FormaDePagamento.tab
 - EstadoDoLivro.tab
 
-6. Diversos
-6.1 - Implementação: Java Swing
-6.2 - IDE: Notepad++
+6. Listagens e Pesquisas
+- Listar todos os livros
+- Listagem por titulo
+
+7. Diversos
+7.1 - Implementação: Java Swing
+7.2 - IDE: Notepad++
 */

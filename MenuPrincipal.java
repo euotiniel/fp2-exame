@@ -15,12 +15,13 @@ import Calendario.*;
 public class MenuPrincipal extends JFrame implements ActionListener {
 
     private JMenuBar menuBar;
-    private JMenu ficheiroMenu, operacoesMenu, tabelasMenu, ajudaMenu;
+    private JMenu ficheiroMenu, operacoesMenu, listagemMenu, tabelasMenu, ajudaMenu;
     private JMenuItem novoLivroItem, editarLivroItem, eliminarLivroItem, sair;
     private JMenuItem novoClienteItem, novaVendaItem;
+    private JMenuItem listarLivroItem, pesquisarLivroItem;
     private JMenuItem generoLivroItem, formaDePagamentoItem, estadoDoLivroItem;
     private JMenuItem ajudaAplicacaoItem, ajudaAutorItem;
-
+    
     public MenuPrincipal() {
         instanciarObjectos();
 
@@ -43,6 +44,8 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         ficheiroMenu.setMnemonic('F');
         operacoesMenu = new JMenu("Operacoes");
         operacoesMenu.setMnemonic('O');
+        listagemMenu = new JMenu("Listagens");
+        listagemMenu.setMnemonic('L');
         tabelasMenu = new JMenu("Tabelas");
         tabelasMenu.setMnemonic('T');
         ajudaMenu = new JMenu("Ajuda");
@@ -52,6 +55,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         menuBar.add(ficheiroMenu);
         menuBar.add(operacoesMenu);
+        menuBar.add(listagemMenu);
         menuBar.add(tabelasMenu);
         menuBar.add(ajudaMenu);
 
@@ -71,6 +75,11 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         operacoesMenu.addSeparator();
         operacoesMenu.add(novaVendaItem = new JMenuItem("Nova Venda"));
 
+        // Opções do menu Listagens
+        listagemMenu.add(listarLivroItem = new JMenuItem("Listar livros"));
+        listagemMenu.addSeparator();
+        listagemMenu.add(pesquisarLivroItem = new JMenuItem("Pesquisar livros"));
+
         // Opções do menu Tabelas
 
         tabelasMenu.add(generoLivroItem = new JMenuItem("Genero do livro"));
@@ -84,13 +93,15 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         ajudaMenu.add(ajudaAutorItem = new JMenuItem("Sobre o Autor"));
 
         // registar o manipulador de eventos aos items
+
         novoLivroItem.addActionListener(this);
         sair.addActionListener(this);
+        listarLivroItem.addActionListener(this);
         ajudaAutorItem.addActionListener(this);
-
         generoLivroItem.addActionListener(this);
         formaDePagamentoItem.addActionListener(this);
         estadoDoLivroItem.addActionListener(this);
+        pesquisarLivroItem.addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent evt) {
@@ -106,6 +117,11 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         if (evt.getSource() == estadoDoLivroItem)
             Tabela2.editarNovosItems("EstadoDoLivro.tab", "Novo estado do livro");
+        
+        if (evt.getSource() == listarLivroItem)
+            LivroFile.listarLivros();
+        if (evt.getSource() == pesquisarLivroItem)
+            new PesquisarLivro();
 
         else if (evt.getSource() == sair)
             dispose();

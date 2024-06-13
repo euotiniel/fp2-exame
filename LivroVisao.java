@@ -21,7 +21,7 @@ public class LivroVisao extends JFrame {
 		getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
 		getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
 		setTitle("Cadastro de Novo Livro");
-		dfineTheme();
+		defineTheme();
 		pack();
 		// setSize(600, 400);
 		setLocationRelativeTo(null);
@@ -32,14 +32,18 @@ public class LivroVisao extends JFrame {
 		JTextField idJTF, tituloJTF, autorJTF, precoJTF;
 		JComboBox<String> generoJCB, estadoDoLivroJCB;
 		JSpinner quantidadeEstoqueJS;
-
+		private LivroFile livroFile;
 		public PainelCentro() {
 			setLayout(new GridLayout(4, 2, 5, 10));
 
+			livroFile = new LivroFile();
 			// Linha 1
 
 			add(new Label("ID"));
 			add(idJTF = new JTextField());
+			idJTF.setText( String.valueOf(livroFile.getProximoCodigo()));
+			// idJTF.setText( "" + livroFile.getProximoCodigo());
+			idJTF.setFocusable(false);
 
 			add(new Label("Título do livro"));
 			add(tituloJTF = new JTextField());
@@ -104,6 +108,7 @@ public class LivroVisao extends JFrame {
 			JOptionPane.showMessageDialog(null, modelo.toString());
 
 			modelo.salvar();
+			dispose();
 		}
 	}
 
@@ -124,7 +129,7 @@ public class LivroVisao extends JFrame {
 		}
 	}
 
-	public void dfineTheme() {
+	public void defineTheme() {
 		try {
 			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
