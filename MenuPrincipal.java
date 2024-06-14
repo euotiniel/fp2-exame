@@ -22,12 +22,12 @@ public class MenuPrincipal extends JFrame implements ActionListener {
     private JMenuItem generoLivroItem, formaDePagamentoItem, estadoDoLivroItem;
     private JMenuItem ajudaAplicacaoItem, ajudaAutorItem;
     
-    public MenuPrincipal() {
+    public MenuPrincipal(String user) {
         instanciarObjectos();
 
         setJMenuBar(menuBar);
 
-        setTitle("Menu principal");
+        setTitle("Menu principal - " + user);
         setSize(600, 400);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -130,8 +130,9 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Vector_Tabelas.inic();
         new MenuPrincipal();
-    }
+    }*/
+    
 }

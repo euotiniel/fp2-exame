@@ -73,7 +73,8 @@ public class ApresentacaoVisao extends JFrame {
 
         public void actionPerformed(ActionEvent evt) {
             if (evt.getSource() == entrarJB) {
-                JOptionPane.showMessageDialog(null, "Login");
+                dispose();
+                new LoginVisao();
             } else {
                 dispose();
             }
