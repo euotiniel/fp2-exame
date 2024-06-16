@@ -95,4 +95,27 @@ public class LivroFile extends ObjectsFile {
         }
         
     }
+
+    public  static void pesquisarLivroPorAutor(String getAutorProcurado) {
+        LivroFile ficheiro = new LivroFile();
+        LivroModelo modelo = new LivroModelo();
+
+        try {
+            ficheiro.stream.seek(4);
+            for (int i = 0; i < ficheiro.getNregistos(); ++i){
+                
+                modelo .read(ficheiro.stream);
+
+                if (modelo.getAutor().equalsIgnoreCase(getAutorProcurado)) {
+                    JOptionPane.showMessageDialog(null, modelo.toString());
+                    return;
+                } 
+            }
+            JOptionPane.showMessageDialog(null, "404, Autor não encontrado", "Not found", JOptionPane.ERROR_MESSAGE);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
+    }
 }

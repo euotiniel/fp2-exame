@@ -75,7 +75,7 @@ public class LoginVisao extends JFrame {
                     dispose();
                     new MenuPrincipal(user);
                 } else {
-                    JOptionPane.showConfirmDialog(null, "Login invalido", "Erro", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Login invalido", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 dispose();
