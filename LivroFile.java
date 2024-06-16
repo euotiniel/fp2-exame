@@ -75,6 +75,26 @@ public class LivroFile extends ObjectsFile {
         return vector;
     }
 
+    public static StringVector getAllGenders() {
+        LivroFile ficheiro = new LivroFile();
+        LivroModelo modelo = new LivroModelo();
+        StringVector vector = new StringVector();
+
+        try {
+            ficheiro.stream.seek(4);
+            for (int i = 0; i < ficheiro.getNregistos(); ++i){
+                modelo .read(ficheiro.stream);
+                vector.add(modelo.getGenero());
+            }
+
+            vector.sort();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } 
+
+        return vector;
+    }
+
     public  static void pesquisarLivroPorTitulo(String tituloProcurado) {
         LivroFile ficheiro = new LivroFile();
         LivroModelo modelo = new LivroModelo();
@@ -113,6 +133,27 @@ public class LivroFile extends ObjectsFile {
             }
             JOptionPane.showMessageDialog(null, "404, Autor não encontrado", "Not found", JOptionPane.ERROR_MESSAGE);
 
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
+    }
+
+    public  static void pesquisarLivroPorGenero(String generoProcurado) {
+        LivroFile ficheiro = new LivroFile();
+        LivroModelo modelo = new LivroModelo();
+
+        try {
+            ficheiro.stream.seek(4);
+            for (int i = 0; i < ficheiro.getNregistos(); ++i){
+                
+                modelo .read(ficheiro.stream);
+
+                if (modelo.getGenero().equalsIgnoreCase(generoProcurado)) {
+                    JOptionPane.showMessageDialog(null, modelo.toString());
+                    break;
+                }
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }

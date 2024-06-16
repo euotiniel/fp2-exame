@@ -29,23 +29,33 @@ public class PesquisarLivro extends JFrame {
         setVisible(true);
     }
 
+    
+
     class PainelCentro extends JPanel implements ActionListener {
-        JComboBox tituloJCB;
+        JComboBox tituloJCB, generoJCB;
         JTextField autorJTF;
-        JRadioButton searchTitulo, searchAutor;
+        JRadioButton searchTitulo, searchAutor, searchGender;
+        JViewport searchVoid;
         ButtonGroup group;
 
         public PainelCentro() {
-            setLayout(new GridLayout(3, 2));
+            setLayout(new GridLayout(6,2));
             group = new ButtonGroup();
             add(searchTitulo = new JRadioButton("Título", true));
             add(searchAutor = new JRadioButton("Autor"));
+            add(searchGender = new JRadioButton("Genero"));
+            add(searchVoid = new JViewport());
 
             group.add(searchTitulo);
             group.add(searchAutor);
+            group.add(searchGender);
 
             add(new JLabel("Escolha o titulo do livro"));
             add(tituloJCB = new JComboBox(LivroFile.getAllNames()));
+
+            add(new JLabel("Escolha o genero do livro"));
+            add(generoJCB = new JComboBox(LivroFile.getAllGenders()));
+            generoJCB.setEnabled(false);
 
             add(new JLabel("Escolha o autor do livro"));
             add(autorJTF = new JTextField());
@@ -53,15 +63,22 @@ public class PesquisarLivro extends JFrame {
 
             searchTitulo.addActionListener(this);
             searchAutor.addActionListener(this);
+            searchGender.addActionListener(this);
         }
 
         public void actionPerformed(ActionEvent evt) {
             if (evt.getSource() == searchAutor) {
                 autorJTF.setEnabled(true);
                 tituloJCB.setEnabled(false);
-            } else {
+                generoJCB.setEnabled(false);
+            } else if (evt.getSource() == searchGender) {
+                generoJCB.setEnabled(true);
+                tituloJCB.setEnabled(false);
                 autorJTF.setEnabled(false);
+            } else {
                 tituloJCB.setEnabled(true);
+                autorJTF.setEnabled(false);
+                generoJCB.setEnabled(false);
             }
         }
 
@@ -73,11 +90,17 @@ public class PesquisarLivro extends JFrame {
             return autorJTF.getText().trim();
         }
 
+        public String getGeneroProcurado() {
+            return String.valueOf(generoJCB.getSelectedItem());
+        }
+
         public int getTipoPesquisa() {
             if (searchTitulo.isSelected()) {
                 return 1;
-            } else {
+            } else if (searchAutor.isSelected()) {
                 return 2;
+            } else {
+                return 3;
             }
         }
     }
@@ -96,6 +119,8 @@ public class PesquisarLivro extends JFrame {
                     LivroFile.pesquisarLivroPorTitulo(centro.getTituloProcurado());
                 } else if (centro.getTipoPesquisa() == 2) {
                     LivroFile.pesquisarLivroPorAutor(centro.getAutorProcurado());
+                } else if (centro.getTipoPesquisa() == 3) {
+                    LivroFile.pesquisarLivroPorGenero(centro.getGeneroProcurado());
                 }
             }
         }
