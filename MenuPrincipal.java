@@ -17,7 +17,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
     private JMenuBar menuBar;
     private JMenu ficheiroMenu, operacoesMenu, listagemMenu, pesquisaMenu, tabelasMenu, ajudaMenu;
     private JMenuItem novoLivroItem, editarLivroItem, eliminarLivroItem, sair;
-    private JMenuItem novoClienteItem, novaVendaItem;
+    private JMenuItem novoClienteItem, novaVendaItem, editarClienteItem, eliminarClienteItem;
     private JMenuItem listarLivroItem, listarClienteItem, pesquisarLivroItem, pesquisarClienteItem;
     private JMenuItem generoLivroItem, formaDePagamentoItem, estadoDoLivroItem;
     private JMenuItem ajudaAplicacaoItem, ajudaAutorItem;
@@ -75,6 +75,8 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         // Opções do menu Operacoes
 
         operacoesMenu.add(novoClienteItem = new JMenuItem("Novo Cliente"));
+        operacoesMenu.add(editarClienteItem = new JMenuItem("Editar Cliente"));
+        operacoesMenu.add(eliminarClienteItem = new JMenuItem("Eliminar Cliente"));
         operacoesMenu.addSeparator();
         operacoesMenu.add(novaVendaItem = new JMenuItem("Nova Venda"));
 
@@ -104,6 +106,8 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         novoLivroItem.addActionListener(this);
         editarLivroItem.addActionListener(this);
         novoClienteItem.addActionListener(this);
+        editarClienteItem.addActionListener(this);
+        eliminarClienteItem.addActionListener(this);
         sair.addActionListener(this);
         listarLivroItem.addActionListener(this);
         listarClienteItem.addActionListener(this);
@@ -124,7 +128,10 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             new EditarLivro();
 
         if (evt.getSource() == novoClienteItem)
-            new ClienteVisao();
+            new ClienteVisao(false, new ClienteModelo());
+
+        if (evt.getSource() == editarClienteItem)
+            new EditarCliente();
 
         if (evt.getSource() == generoLivroItem)
             Tabela2.editarNovosItems("Genero.tab", "Novo genero de livro");

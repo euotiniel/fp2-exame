@@ -79,6 +79,28 @@ public class ClienteFile extends ObjectsFile {
         
  }
 
+ public static ClienteModelo getClientePorNome(String getNomeProcurado) {
+     ClienteFile ficheiro = new ClienteFile();
+     ClienteModelo modelo = new ClienteModelo();
+
+     try {
+         ficheiro.stream.seek(4);
+         for (int i = 0; i < ficheiro.getNregistos(); ++i){
+                
+             modelo .read(ficheiro.stream);
+
+             if (modelo.getNome().equalsIgnoreCase(getNomeProcurado)) {
+                 return modelo;
+             } 
+         }
+         JOptionPane.showMessageDialog(null, "Nome não encontrado", "Not found", JOptionPane.ERROR_MESSAGE);
+
+     } catch (Exception ex) {
+         ex.printStackTrace();
+     }
+       return modelo; 
+ }
+
  public  static void pesquisarClientePorTelefone(String getTelefoneProcurado) {
      ClienteFile ficheiro = new ClienteFile();
      ClienteModelo modelo = new ClienteModelo();

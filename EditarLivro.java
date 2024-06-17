@@ -102,7 +102,6 @@ public class EditarLivro extends JFrame{
         }
     }
 
-
     class PainelSul extends JPanel implements ActionListener {
         JButton pesquisarJB;
 
