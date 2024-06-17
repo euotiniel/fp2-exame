@@ -18,7 +18,7 @@ public class PesquisarLivro extends JFrame {
     PainelSul sul;
 
     public PesquisarLivro() {
-        super("Pesquisas");
+        super("Pesquisar livro");
 
         getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
         getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);

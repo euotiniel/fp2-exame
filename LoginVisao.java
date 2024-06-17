@@ -2,15 +2,13 @@
 Tema: Gestão de uma Livraria
 Nome: Otoniel Emanuel
 Numero: 33039
-Ficheiro: ApresentacaoVisao.java
+Ficheiro: LoginVisao.java
 Data: 14.06.2024
 --------------------------------------*/
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import SwingComponents.*;
-import Calendario.*;
 
 public class LoginVisao extends JFrame {
 
@@ -23,9 +21,9 @@ public class LoginVisao extends JFrame {
         getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
 
         setTitle("Entrar");
-        // pack();
-        setSize(600, 400);
+        setSize(400, 300);
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
@@ -36,11 +34,46 @@ public class LoginVisao extends JFrame {
         private String correctPassword = "ucan";
 
         public PainelCentro() {
-            setLayout(new GridLayout(2, 2));
-            add(new JLabel("N processo: "));
-            add(numberJTF = new JTextField());
-            add(new JLabel("Password: "));
-            add(passwordJPF = new JPasswordField());
+            setLayout(new GridBagLayout());
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.insets = new Insets(10, 10, 10, 10); // Define margens para os componentes
+
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.anchor = GridBagConstraints.WEST;
+            add(new JLabel("N processo: "), gbc);
+
+            gbc.gridx = 0;
+            gbc.gridy = 1;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            add(numberJTF = new JTextField(20), gbc);
+
+            gbc.gridx = 0;
+            gbc.gridy = 2;
+            gbc.fill = GridBagConstraints.NONE;
+            gbc.anchor = GridBagConstraints.WEST;
+            add(new JLabel("Password: "), gbc);
+
+            gbc.gridx = 0;
+            gbc.gridy = 3;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            add(passwordJPF = new JPasswordField(20), gbc);
+
+            // Definir caracter de ocultar senha
+            passwordJPF.setEchoChar('o');
+
+            // Adicionar KeyListener para o campo de senha
+            passwordJPF.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                        String user = centro.getNumber();
+                        dispose();
+                        new MenuPrincipal(user);
+                    }
+                }
+            });
+
         }
 
         public String getNumber() {
@@ -48,15 +81,11 @@ public class LoginVisao extends JFrame {
         }
 
         public String getPassword() {
-            return passwordJPF.getText().trim();
+            return new String(passwordJPF.getPassword()).trim();
         }
 
         public boolean loginValid() {
-            if (getNumber().equals(correctNumber) && getPassword().equals(correctPassword)) {
-                return true;
-            }
-
-            return false;
+            return getNumber().equals(correctNumber) && getPassword().equals(correctPassword);
         }
     }
 
@@ -64,6 +93,7 @@ public class LoginVisao extends JFrame {
         private JButton entrarJB;
 
         public PainelSul() {
+            setLayout(new FlowLayout(FlowLayout.CENTER));
             add(entrarJB = new JButton("Entrar"));
             entrarJB.addActionListener(this);
         }
@@ -75,19 +105,11 @@ public class LoginVisao extends JFrame {
                     dispose();
                     new MenuPrincipal(user);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Login invalido", "Erro", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Login inválido", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 dispose();
             }
         }
     }
-
-    public static void main(String args[]) {
-        Vector_Tabelas.inic(); // cria a conexao do projecto com a API SWINGCOMPONENTS
-        new ApresentacaoVisao();
-    }
 }
-
-
-

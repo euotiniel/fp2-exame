@@ -105,13 +105,13 @@ public class LivroModelo implements RegistGeneric {
     public String toString () {
         String str = "Dados do Livro Modelo\n\n";
 
-        str += "Id " + getId() + "\n";
-        str += "Titulo " + getTitulo() + "\n";
-        str += "Autor " + getAutor() + "\n";
-        str += "Genero " + getGenero() + "\n";
-        str += "Estado " + getEstado() + "\n";
-        str += "Preco " + getPreco() + "\n";
-        str += "Estoque " + getQuantidadeEstoque() + "\n";
+        str += "id: " + getId() + "\n";
+        str += "Titulo: " + getTitulo() + "\n";
+        str += "Autor: " + getAutor() + "\n";
+        str += "Genero: " + getGenero() + "\n";
+        str += "Estado: " + getEstado() + "\n";
+        str += "Preco: " + getPreco() + " kzs\n";
+        str += "Estoque: " + getQuantidadeEstoque() + "\n";
 
         return str;
     }

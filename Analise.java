@@ -31,7 +31,6 @@ Este projecto tem o objectivo de gerir a venda de livros, incluindo o registo de
 - ClienteModelo
 	int id
 	String nome
-	String endereco
 	String telefone
 	String email
 	
