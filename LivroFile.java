@@ -95,6 +95,27 @@ public class LivroFile extends ObjectsFile {
         return vector;
     }
 
+    public  static LivroModelo getLivroPorTitulo(String tituloProcurado) {
+        LivroFile ficheiro = new LivroFile();
+        LivroModelo modelo = new LivroModelo();
+
+        try {
+            ficheiro.stream.seek(4);
+            for (int i = 0; i < ficheiro.getNregistos(); ++i){
+                
+                modelo .read(ficheiro.stream);
+
+                if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado)) {
+                    return modelo;
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return modelo;
+    }
+
     public  static void pesquisarLivroPorTitulo(String tituloProcurado) {
         LivroFile ficheiro = new LivroFile();
         LivroModelo modelo = new LivroModelo();

@@ -66,11 +66,11 @@ public class LoginVisao extends JFrame {
             passwordJPF.addKeyListener(new KeyAdapter() {
                 @Override
                 public void keyPressed(KeyEvent e) {
-                    if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                        String user = centro.getNumber();
-                        dispose();
-                        new MenuPrincipal(user);
-                    }
+                        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                            String user = centro.getNumber();
+                            dispose();
+                            new MenuPrincipal(user);
+                        }
                 }
             });
 

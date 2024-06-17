@@ -102,6 +102,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         // registar o manipulador de eventos aos items
 
         novoLivroItem.addActionListener(this);
+        editarLivroItem.addActionListener(this);
         novoClienteItem.addActionListener(this);
         sair.addActionListener(this);
         listarLivroItem.addActionListener(this);
@@ -117,7 +118,10 @@ public class MenuPrincipal extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent evt) {
 
         if (evt.getSource() == novoLivroItem)
-            new LivroVisao();
+            new LivroVisao(false, new LivroModelo());
+
+        if (evt.getSource() == editarLivroItem)
+            new EditarLivro();
 
         if (evt.getSource() == novoClienteItem)
             new ClienteVisao();
