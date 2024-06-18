@@ -16,8 +16,7 @@ import java.io.*;
 public class LivroModelo implements RegistGeneric {
 
     int id;
-    StringBufferModelo titulo, autor, genero, estado;
-    double preco;
+    StringBufferModelo titulo, autor, genero, estado, preco;
     int quantidadeEstoque;
 
     public LivroModelo() {
@@ -26,17 +25,17 @@ public class LivroModelo implements RegistGeneric {
         autor = new StringBufferModelo("", 50);
         genero = new StringBufferModelo("", 20);
         estado = new StringBufferModelo("", 30);
-        preco = 0;
+        preco = new StringBufferModelo("", 10);
         quantidadeEstoque = 0;
     }
 
-    public LivroModelo(int id, String titulo, String autor, String genero, String estado, double preco, int quantidadeEstoque) {
+    public LivroModelo(int id, String titulo, String autor, String genero, String estado, String preco, int quantidadeEstoque) {
         this.id = id;
         this.titulo = new StringBufferModelo(titulo, 50);
         this.autor = new StringBufferModelo(autor, 50);
         this.genero = new StringBufferModelo(genero, 20);
         this.estado = new StringBufferModelo(estado, 30);
-        this.preco = preco;
+        this.preco = new StringBufferModelo(preco, 10);
         this.quantidadeEstoque = quantidadeEstoque;
     }
 
@@ -62,8 +61,8 @@ public class LivroModelo implements RegistGeneric {
         return estado.toStringEliminatingSpaces();
     }
 
-    public double getPreco() {
-        return preco;
+    public String getPreco() {
+        return preco.toStringEliminatingSpaces();
     }
 
     public int getQuantidadeEstoque() {
@@ -92,8 +91,8 @@ public class LivroModelo implements RegistGeneric {
         estado = new StringBufferModelo(novoEstado, 30);
     }
 
-    public void setPreco(double novoPreco) {
-        preco = novoPreco;
+    public void setPreco(String novoPreco) {
+        preco = new StringBufferModelo(novoPreco, 10);
     }
 
     public void setQuantidadeEstoque(int novaQuantidadeEstoque) {
@@ -119,7 +118,7 @@ public class LivroModelo implements RegistGeneric {
     // Tamanho geral de cada registro/modelo
     public long sizeof() {
         try {
-            return 150 * 2 + 4 + 6 + 3;
+            return 160 * 2 + 4 + 6 + 3;
         } catch (Exception ex) {
             return 0;
         }
@@ -132,7 +131,7 @@ public class LivroModelo implements RegistGeneric {
         autor.write(stream);
         genero.write(stream);
         estado.write(stream);
-        stream.writeDouble(preco);
+        preco.write(stream);
         stream.writeInt(quantidadeEstoque);
 
         } catch (IOException ex) {
@@ -148,7 +147,8 @@ public class LivroModelo implements RegistGeneric {
         autor.read(stream);
         genero.read(stream);
         estado.read(stream);
-        preco = stream.readDouble();
+        preco.read(stream);
+        // preco = stream.readDouble();
         quantidadeEstoque = stream.readInt();
 
         } catch (IOException ex) {

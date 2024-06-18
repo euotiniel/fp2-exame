@@ -144,8 +144,8 @@ public class LivroVisao extends JFrame {
 			return String.valueOf(estadoDoLivroJCB.getSelectedItem());
 		}
 
-		public double getPreco() {
-			return Integer.parseInt(precoJTF.getText().trim());
+		public String getPreco() {
+			return precoJTF.getText().trim();
 		}
 
 		public int getQuantidadeEstoque() {
@@ -185,8 +185,7 @@ public class LivroVisao extends JFrame {
 		// Save
 
 		public void cadastrar() {
-			LivroModelo modelo = new LivroModelo(getId(), getTitulo(), getAutor(), getGenero(), getEstado(), getPreco(),
-					getQuantidadeEstoque());
+			LivroModelo modelo = new LivroModelo(getId(), getTitulo(), getAutor(), getGenero(), getEstado(), getPreco(), getQuantidadeEstoque());
 
 			JOptionPane.showMessageDialog(null, modelo.toString());
 
