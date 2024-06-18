@@ -14,12 +14,16 @@ import Calendario.*;
 import javax.swing.UIManager.*;
 
 public class LivroVisao extends JFrame {
+	
 	PainelCentro centro;
 	PainelSul sul;
+	boolean editar;
 
 	public LivroVisao(boolean alterar, LivroModelo modelo) {
 		// getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
 		getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
+
+		editar = alterar;
 
 		if (!alterar) {
 			getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
@@ -189,6 +193,17 @@ public class LivroVisao extends JFrame {
 			modelo.salvar();
 			dispose();
 		}
+
+		// Edit
+		public void editar() {
+			LivroModelo modelo = new LivroModelo(getId(), getTitulo(), getAutor(), getGenero(), getEstado(), getPreco(),
+					getQuantidadeEstoque());
+
+			JOptionPane.showMessageDialog(null, modelo.toString());
+
+			modelo.salvarDados();
+			dispose();
+		}
 	}
 
 	class PainelSul extends JPanel implements ActionListener {
@@ -202,7 +217,11 @@ public class LivroVisao extends JFrame {
 
 		public void actionPerformed(ActionEvent evt) {
 			if (evt.getSource() == cadastrarJB) {
-				centro.cadastrar();
+				if (editar) {
+					centro.editar();
+				} else {
+					centro.cadastrar();
+				}
 			}
 
 		}

@@ -162,4 +162,9 @@ public class LivroModelo implements RegistGeneric {
         file.salvarDados(this);
     }
 
+    public void salvarDados(){
+        LivroFile file = new LivroFile();
+        file.alterarDados(this);
+    }
+
 }
