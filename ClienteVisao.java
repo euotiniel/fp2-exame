@@ -16,8 +16,11 @@ import javax.swing.UIManager.*;
 public class ClienteVisao extends JFrame {
     PainelCentro centro;
 	PainelSul sul;
+	boolean editar;
 
 	public ClienteVisao(boolean alterar, ClienteModelo modelo) {
+
+		editar = alterar;
 
 		if (!alterar) {
 			getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
@@ -136,6 +139,15 @@ public class ClienteVisao extends JFrame {
 			modelo.salvar();
 			dispose();
 		}
+
+		public void editar() {
+			ClienteModelo modelo = new ClienteModelo(getId(), getNome(), getTelefone(), getEmail());
+
+			JOptionPane.showMessageDialog(null, modelo.toString());
+
+			modelo.salvarDados();
+			dispose();
+		}
 	}
 
 	class PainelSul extends JPanel implements ActionListener {
@@ -149,7 +161,11 @@ public class ClienteVisao extends JFrame {
 
 		public void actionPerformed(ActionEvent evt) {
 			if (evt.getSource() == cadastrarJB) {
-				centro.cadastrar();
+				if (editar) {
+					centro.editar();
+				} else {
+					centro.cadastrar();
+				}
 			}
 
 		}

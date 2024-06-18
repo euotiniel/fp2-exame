@@ -122,4 +122,9 @@ public class ClienteModelo implements RegistGeneric {
         file.salvarDados(this);
     }
 
+    public void salvarDados(){
+        ClienteFile file = new ClienteFile();
+        file.alterarDados(this);
+    }
+
 }
