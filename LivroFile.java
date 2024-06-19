@@ -41,8 +41,11 @@ public class LivroFile extends ObjectsFile {
             ficheiro.stream.seek(4);
             for (int i = 0; i < ficheiro.getNregistos(); ++i){
                 modelo .read(ficheiro.stream);
-                output += "--------------------------------------------\n";
-                output += modelo.toString() + "\n";
+
+                if (modelo.getStatus() == true) {
+                    output += "--------------------------------------------\n";
+                    output += modelo.toString() + "\n";
+                }
             }
 
             JTextArea area = new JTextArea(40, 60);
@@ -64,7 +67,10 @@ public class LivroFile extends ObjectsFile {
             ficheiro.stream.seek(4);
             for (int i = 0; i < ficheiro.getNregistos(); ++i){
                 modelo .read(ficheiro.stream);
-                vector.add(modelo.getTitulo());
+
+                if (modelo.getStatus() == true) {
+                    vector.add(modelo.getTitulo());
+                }
             }
 
             vector.sort();
@@ -105,7 +111,7 @@ public class LivroFile extends ObjectsFile {
                 
                 modelo .read(ficheiro.stream);
 
-                if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado)) {
+                if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado) && modelo.getStatus() == true) {
                     return modelo;
                 }
             }
@@ -126,7 +132,7 @@ public class LivroFile extends ObjectsFile {
                 
                 modelo .read(ficheiro.stream);
 
-                if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado)) {
+                if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado) && modelo.getStatus() == true) {
                     JOptionPane.showMessageDialog(null, modelo.toString());
                     break;
                 }
@@ -147,7 +153,7 @@ public class LivroFile extends ObjectsFile {
                 
                 modelo .read(ficheiro.stream);
 
-                if (modelo.getAutor().equalsIgnoreCase(getAutorProcurado)) {
+                if (modelo.getAutor().equalsIgnoreCase(getAutorProcurado) && modelo.getStatus() == true) {
                     JOptionPane.showMessageDialog(null, modelo.toString());
                     return;
                 } 
@@ -170,7 +176,7 @@ public class LivroFile extends ObjectsFile {
                 
                 modelo .read(ficheiro.stream);
 
-                if (modelo.getGenero().equalsIgnoreCase(generoProcurado)) {
+                if (modelo.getGenero().equalsIgnoreCase(generoProcurado) && modelo.getStatus() == true) {
                     JOptionPane.showMessageDialog(null, modelo.toString());
                     break;
                 }
@@ -194,6 +200,33 @@ public class LivroFile extends ObjectsFile {
                     stream.seek(4);
                     modelo_novo.write(stream);
                     JOptionPane.showMessageDialog(null, "Dados editados com sucesso.");
+                    return;
+                } else {
+                    if (modelo_antigo.getId() + 1 == modelo_novo.getId()) {
+                        modelo_novo.write(stream);
+                        return;
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void eliminarDados (LivroModelo modelo_novo) {
+        LivroModelo modelo_antigo = new LivroModelo();
+
+        try  {
+            stream.seek(4);
+
+            for (int i = 0; i < getNregistos(); ++i) {
+
+                modelo_antigo.read(stream);
+
+                if (i == 0 && modelo_antigo.getId() == modelo_novo.getId()) {
+                    stream.seek(4);
+                    modelo_novo.write(stream);
+                    JOptionPane.showMessageDialog(null, "Livro elimados com sucesso.");
                     return;
                 } else {
                     if (modelo_antigo.getId() + 1 == modelo_novo.getId()) {

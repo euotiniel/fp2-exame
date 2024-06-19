@@ -136,8 +136,13 @@ public class ClienteVisao extends JFrame {
 
 			JOptionPane.showMessageDialog(null, modelo.toString());
 
-			modelo.salvar();
-			dispose();
+			if (getNome() != null && getTelefone() != null && getEmail() != null) {
+				modelo.salvar();
+			    dispose();
+			} else {
+				JOptionPane.showMessageDialog(null, "Preencha todos os campos...");
+			}
+			
 		}
 
 		public void editar() {

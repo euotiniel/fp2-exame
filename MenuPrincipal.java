@@ -105,6 +105,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         novoLivroItem.addActionListener(this);
         editarLivroItem.addActionListener(this);
+        eliminarLivroItem.addActionListener(this);
         novoClienteItem.addActionListener(this);
         editarClienteItem.addActionListener(this);
         eliminarClienteItem.addActionListener(this);
@@ -126,6 +127,9 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         if (evt.getSource() == editarLivroItem)
             new EditarLivro();
+
+        if (evt.getSource() == eliminarLivroItem)
+            new EliminarLivro();
 
         if (evt.getSource() == novoClienteItem)
             new ClienteVisao(false, new ClienteModelo());

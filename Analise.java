@@ -27,12 +27,14 @@ Este projecto tem o objectivo de gerir a venda de livros, incluindo o registo de
 	double preco
 	int quantidadeEstoque
 	Setring estado
+	boolean status
 	
 - ClienteModelo
 	int id
 	String nome
 	String telefone
 	String email
+	boolean status
 	
 - VendaModelo
 	int id
@@ -41,6 +43,7 @@ Este projecto tem o objectivo de gerir a venda de livros, incluindo o registo de
 	int quantidade
 	double valorTotal
 	String dataVenda
+	boolean status
 	
 4. Ficheiro
 - LivroFile.dat

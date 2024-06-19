@@ -185,7 +185,7 @@ public class LivroVisao extends JFrame {
 		// Save
 
 		public void cadastrar() {
-			LivroModelo modelo = new LivroModelo(getId(), getTitulo(), getAutor(), getGenero(), getEstado(), getPreco(), getQuantidadeEstoque());
+			LivroModelo modelo = new LivroModelo(getId(), getTitulo(), getAutor(), getGenero(), getEstado(), getPreco(), getQuantidadeEstoque(), true);
 
 			JOptionPane.showMessageDialog(null, modelo.toString());
 
@@ -196,7 +196,7 @@ public class LivroVisao extends JFrame {
 		// Edit
 		public void editar() {
 			LivroModelo modelo = new LivroModelo(getId(), getTitulo(), getAutor(), getGenero(), getEstado(), getPreco(),
-					getQuantidadeEstoque());
+					getQuantidadeEstoque(), true);
 
 			JOptionPane.showMessageDialog(null, modelo.toString());
 

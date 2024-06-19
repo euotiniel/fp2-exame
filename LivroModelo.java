@@ -18,6 +18,7 @@ public class LivroModelo implements RegistGeneric {
     int id;
     StringBufferModelo titulo, autor, genero, estado, preco;
     int quantidadeEstoque;
+    private boolean status;
 
     public LivroModelo() {
         id = 0;
@@ -27,9 +28,10 @@ public class LivroModelo implements RegistGeneric {
         estado = new StringBufferModelo("", 30);
         preco = new StringBufferModelo("", 10);
         quantidadeEstoque = 0;
+        status = false;
     }
 
-    public LivroModelo(int id, String titulo, String autor, String genero, String estado, String preco, int quantidadeEstoque) {
+    public LivroModelo(int id, String titulo, String autor, String genero, String estado, String preco, int quantidadeEstoque, boolean status) {
         this.id = id;
         this.titulo = new StringBufferModelo(titulo, 50);
         this.autor = new StringBufferModelo(autor, 50);
@@ -37,6 +39,7 @@ public class LivroModelo implements RegistGeneric {
         this.estado = new StringBufferModelo(estado, 30);
         this.preco = new StringBufferModelo(preco, 10);
         this.quantidadeEstoque = quantidadeEstoque;
+        this.status = status;
     }
 
     // Methods GET
@@ -69,6 +72,10 @@ public class LivroModelo implements RegistGeneric {
         return quantidadeEstoque;
     }
 
+    public boolean getStatus() {
+        return status;
+    }
+
     // Methods SET
 
     public void setId(int novoId) {
@@ -99,6 +106,11 @@ public class LivroModelo implements RegistGeneric {
         quantidadeEstoque = novaQuantidadeEstoque;
     }
 
+    public void setStatus(boolean novoStatus) {
+        // this.status = novoStatus; 
+        status = novoStatus; 
+    }
+
     // toString
 
     public String toString () {
@@ -110,6 +122,7 @@ public class LivroModelo implements RegistGeneric {
         str += "Genero: " + getGenero() + "\n";
         str += "Estado: " + getEstado() + "\n";
         str += "Preco: " + getPreco() + " kzs\n";
+        str += "Status: " + getStatus() + "\n";
         str += "Estoque: " + getQuantidadeEstoque() + "\n";
 
         return str;
@@ -118,7 +131,7 @@ public class LivroModelo implements RegistGeneric {
     // Tamanho geral de cada registro/modelo
     public long sizeof() {
         try {
-            return 160 * 2 + 4 + 6 + 3;
+            return 160 * 2 + 4 + 4 + 1;
         } catch (Exception ex) {
             return 0;
         }
@@ -133,7 +146,7 @@ public class LivroModelo implements RegistGeneric {
         estado.write(stream);
         preco.write(stream);
         stream.writeInt(quantidadeEstoque);
-
+        stream.writeBoolean(status);
         } catch (IOException ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Falha ao tentar escrever...");
@@ -150,7 +163,7 @@ public class LivroModelo implements RegistGeneric {
         preco.read(stream);
         // preco = stream.readDouble();
         quantidadeEstoque = stream.readInt();
-
+        status = stream.readBoolean();
         } catch (IOException ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Falha ao tentar ler...");
@@ -166,5 +179,4 @@ public class LivroModelo implements RegistGeneric {
         LivroFile file = new LivroFile();
         file.alterarDados(this);
     }
-
 }
