@@ -19,7 +19,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
     private JMenuItem novoLivroItem, editarLivroItem, eliminarLivroItem, sair;
     private JMenuItem novoClienteItem, novaVendaItem, editarClienteItem, eliminarClienteItem;
     private JMenuItem listarLivroItem, listarClienteItem, pesquisarLivroItem, pesquisarClienteItem;
-    private JMenuItem generoLivroItem, formaDePagamentoItem, estadoDoLivroItem;
+    private JMenuItem generoLivroItem, formaDePagamentoItem, estadoDoLivroItem, provinciaMoradaItem, municipioMoradaItem, comunaMoradaItem;;
     private JMenuItem ajudaAplicacaoItem, ajudaAutorItem;
     
     public MenuPrincipal(String user) {
@@ -94,6 +94,10 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         tabelasMenu.add(generoLivroItem = new JMenuItem("Genero do livro"));
         tabelasMenu.add(formaDePagamentoItem = new JMenuItem("Forma de pagamento"));
         tabelasMenu.add(estadoDoLivroItem = new JMenuItem("Estado do Livro"));
+        tabelasMenu.addSeparator();
+        tabelasMenu.add(provinciaMoradaItem = new JMenuItem("Provincia"));
+        tabelasMenu.add(municipioMoradaItem = new JMenuItem("Municipio"));
+        tabelasMenu.add(comunaMoradaItem = new JMenuItem("Comuna"));
 
         // Opções do menu Ajuda
 
@@ -116,6 +120,9 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         generoLivroItem.addActionListener(this);
         formaDePagamentoItem.addActionListener(this);
         estadoDoLivroItem.addActionListener(this);
+        provinciaMoradaItem.addActionListener(this);
+        municipioMoradaItem.addActionListener(this);
+        comunaMoradaItem.addActionListener(this);
         pesquisarLivroItem.addActionListener(this);
         pesquisarClienteItem.addActionListener(this);
     }
@@ -146,6 +153,17 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         if (evt.getSource() == estadoDoLivroItem)
             Tabela2.editarNovosItems("EstadoDoLivro.tab", "Novo estado do livro");
         
+        if (evt.getSource() == provinciaMoradaItem)
+			Tabela2.editarNovosItems("Provincias.tab", "Nova Provincia");
+		
+        if (evt.getSource() == municipioMoradaItem)
+			Tabela3_2.editarNovosItems("Provincias.tab", "Municipios.tab", 
+				"Provincias", "Municipios", "Novo Municipio");
+		
+        if (evt.getSource() == comunaMoradaItem)
+			Tabela3_3.editarNovosItems("Provincias.tab", "Municipios.tab", "Comunas.tab", 
+				"Provincias", "Municipios", "Comunas", "Nova Comuna");
+		
         if (evt.getSource() == listarLivroItem)
             LivroFile.listarLivros();
         if (evt.getSource() == listarClienteItem)

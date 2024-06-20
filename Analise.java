@@ -34,6 +34,9 @@ Este projecto tem o objectivo de gerir a venda de livros, incluindo o registo de
 	String nome
 	String telefone
 	String email
+	String provincia
+	String municipio
+	String comuna
 	boolean status
 	
 - VendaModelo

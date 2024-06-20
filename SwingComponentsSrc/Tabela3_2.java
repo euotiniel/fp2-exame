@@ -180,11 +180,11 @@ public class Tabela3_2 extends Tabela2
          Tabela3_2 record;
          String designacao = get_Field_Value();
          Contentor_Tabela3_2 contentor =  Contentor_Tabela3_2.createStream3_2(fileSun);
-         //Se o campo provincia não for nulo e a provincia nao existir ainda
+         //Se o campo provincia nï¿½o for nulo e a provincia nao existir ainda
         if ( !designacao.equals("") && contentor.Search(designacao) < 0 )
           {
             record = (Tabela3_2)contentor.createNewTabela3_2(cb.getCodigoPaiSeleccionado(), designacao);
- JOptionPane.showMessageDialog(null, "record = " + record.toString());
+ //JOptionPane.showMessageDialog(null, "record = " + record.toString());
             contentor.add(record);
             contentor.Gerar_Proximo_Codigo();
             contentor.Actualizar_Ficheiro();

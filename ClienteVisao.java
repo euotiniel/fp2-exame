@@ -39,13 +39,17 @@ public class ClienteVisao extends JFrame {
 
 	class PainelCentro extends JPanel {
 		JTextField idJTF, nomeJTF, emailJTF, telefoneJTF;
+		JComboBoxPersonal provinciaJCB, municipioJCB, comunaJCB;
+		JComboBoxTabela3_Tabela3 provMunCom;
 
 		private ClienteFile clienteFile;
 
 		public PainelCentro() {
-			setLayout(new GridLayout(4, 2, 5, 10));
+			setLayout(new GridLayout(7, 4, 5, 10));
 
 			clienteFile = new ClienteFile();
+
+			provMunCom = new JComboBoxTabela3_Tabela3("Provincias.tab", "Municipios.tab", "Comunas.tab");
 
 			// Linha 1
 
@@ -65,10 +69,23 @@ public class ClienteVisao extends JFrame {
 
 			add(new Label("Email"));
 			add(emailJTF = new JTextField());
+
+			// Linha 3
+			add( new JLabel("Provincia"));
+			add( provinciaJCB = provMunCom.getComboBoxFather() );
+			
+			add( new JLabel("Municipio"));
+			add( municipioJCB = provMunCom.getComboBoxSun() );
+
+			// Linha 4
+
+			add( new JLabel("Comunas"));
+			add( comunaJCB = provMunCom.getComboBoxNeto() );
+
 		}
 
 		public PainelCentro(ClienteModelo modelo) {
-			setLayout(new GridLayout(4, 2, 5, 10));
+			setLayout(new GridLayout(7, 4, 5, 10));
 
 			clienteFile = new ClienteFile();
 
@@ -93,6 +110,19 @@ public class ClienteVisao extends JFrame {
 			add(new Label("Email"));
 			add(emailJTF = new JTextField());
 			emailJTF.setText(modelo.getEmail());
+
+			// Linha 3
+
+			add(new JLabel("Provincia"));
+			add(provinciaJCB = provMunCom.getComboBoxFather());
+
+			add(new JLabel("Municipio"));
+			add(municipioJCB = provMunCom.getComboBoxSun());
+
+			// Linha 4
+
+			add(new JLabel("Comuna"));
+			add(comunaJCB = provMunCom.getComboBoxNeto());
 		}
 
 		// Methods GET
@@ -112,6 +142,16 @@ public class ClienteVisao extends JFrame {
 			return emailJTF.getText().trim();
 		}
 
+		public String getProvincia() {
+			return String.valueOf( provinciaJCB.getSelectedItem() );
+		}
+		public String getMunicipio() {
+			return String.valueOf( municipioJCB.getSelectedItem() );
+		}
+		public String getComuna() {
+			return String.valueOf( comunaJCB.getSelectedItem() );
+		}
+
 		// Methods set
 		public void setId(int id) {
 			idJTF.setText(" " + id);
@@ -129,24 +169,32 @@ public class ClienteVisao extends JFrame {
 			emailJTF.setText(email);
 		}
 
+		public void setProvincia(String provincia) {
+			provinciaJCB.setSelectedItem(provincia);
+		}
+
+		public void setMunicipio(String municipio) {
+			municipioJCB.setSelectedItem(municipio);
+		}
+
+		 public void setComuna(String comuna) {
+        comunaJCB.setSelectedItem(comuna);
+	 }
+
 		// Save
 
 		public void cadastrar() {
-			ClienteModelo modelo = new ClienteModelo(getId(), getNome(), getTelefone(), getEmail());
+			ClienteModelo modelo = new ClienteModelo(getId(), getNome(), getTelefone(), getEmail(), getProvincia(), getMunicipio(), getComuna(), true);
 
 			JOptionPane.showMessageDialog(null, modelo.toString());
-
-			if (getNome() != null && getTelefone() != null && getEmail() != null) {
 				modelo.salvar();
-			    dispose();
-			} else {
-				JOptionPane.showMessageDialog(null, "Preencha todos os campos...");
-			}
-			
+			    dispose();			
 		}
 
+		// Editar 
+
 		public void editar() {
-			ClienteModelo modelo = new ClienteModelo(getId(), getNome(), getTelefone(), getEmail());
+			ClienteModelo modelo = new ClienteModelo(getId(), getNome(), getTelefone(), getEmail(), getProvincia(), getMunicipio(), getComuna(), true);
 
 			JOptionPane.showMessageDialog(null, modelo.toString());
 
