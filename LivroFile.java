@@ -40,7 +40,7 @@ public class LivroFile extends ObjectsFile {
         try {
             ficheiro.stream.seek(4);
             for (int i = 0; i < ficheiro.getNregistos(); ++i){
-                modelo .read(ficheiro.stream);
+                modelo.read(ficheiro.stream);
 
                 if (modelo.getStatus() == true) {
                     output += "--------------------------------------------\n";
@@ -66,7 +66,7 @@ public class LivroFile extends ObjectsFile {
         try {
             ficheiro.stream.seek(4);
             for (int i = 0; i < ficheiro.getNregistos(); ++i){
-                modelo .read(ficheiro.stream);
+                modelo.read(ficheiro.stream);
 
                 if (modelo.getStatus() == true) {
                     vector.add(modelo.getTitulo());
@@ -89,7 +89,7 @@ public class LivroFile extends ObjectsFile {
         try {
             ficheiro.stream.seek(4);
             for (int i = 0; i < ficheiro.getNregistos(); ++i){
-                modelo .read(ficheiro.stream);
+                modelo.read(ficheiro.stream);
                 vector.add(modelo.getGenero());
             }
 
@@ -109,7 +109,7 @@ public class LivroFile extends ObjectsFile {
             ficheiro.stream.seek(4);
             for (int i = 0; i < ficheiro.getNregistos(); ++i){
                 
-                modelo .read(ficheiro.stream);
+                modelo.read(ficheiro.stream);
 
                 if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado) && modelo.getStatus() == true) {
                     return modelo;
@@ -130,7 +130,7 @@ public class LivroFile extends ObjectsFile {
             ficheiro.stream.seek(4);
             for (int i = 0; i < ficheiro.getNregistos(); ++i){
                 
-                modelo .read(ficheiro.stream);
+                modelo.read(ficheiro.stream);
 
                 if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado) && modelo.getStatus() == true) {
                     JOptionPane.showMessageDialog(null, modelo.toString());
@@ -151,7 +151,7 @@ public class LivroFile extends ObjectsFile {
             ficheiro.stream.seek(4);
             for (int i = 0; i < ficheiro.getNregistos(); ++i){
                 
-                modelo .read(ficheiro.stream);
+                modelo.read(ficheiro.stream);
 
                 if (modelo.getAutor().equalsIgnoreCase(getAutorProcurado) && modelo.getStatus() == true) {
                     JOptionPane.showMessageDialog(null, modelo.toString());
@@ -174,7 +174,7 @@ public class LivroFile extends ObjectsFile {
             ficheiro.stream.seek(4);
             for (int i = 0; i < ficheiro.getNregistos(); ++i){
                 
-                modelo .read(ficheiro.stream);
+                modelo.read(ficheiro.stream);
 
                 if (modelo.getGenero().equalsIgnoreCase(generoProcurado) && modelo.getStatus() == true) {
                     JOptionPane.showMessageDialog(null, modelo.toString());

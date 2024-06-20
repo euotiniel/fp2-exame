@@ -2,8 +2,8 @@
 Tema: Gestão de uma Livraria
 Nome: Otoniel Emanuel
 Numero: 33039
-Ficheiro: EditarCliente.java
-Data: 17.06.2024
+Ficheiro: EliminarCliente.java
+Data: 20.06.2024
 --------------------------------------*/
 
 import javax.swing.*;
@@ -12,12 +12,12 @@ import java.awt.event.*;
 import SwingComponents.*;
 import Calendario.*;
 
-public class EditarCliente extends JFrame {
+public class EliminarCliente extends JFrame {
     PainelCentro centro;
     PainelSul sul;
 
-    public EditarCliente() {
-        super("Pesquisa para editar cliente");
+    public EliminarCliente() {
+        super("Pesquisa para eliminar cliente");
 
         getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
         getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
@@ -84,7 +84,7 @@ public class EditarCliente extends JFrame {
         JButton pesquisarJB;
 
         public PainelSul() {
-            add(pesquisarJB = new JButton("Pesquisar cliente"));
+            add(pesquisarJB = new JButton("Eliminar cliente"));
             pesquisarJB.addActionListener(this);
         }
 
@@ -93,10 +93,24 @@ public class EditarCliente extends JFrame {
                 ClienteModelo modelo;
                 if (centro.getTipoPesquisa() == 1) {
                     modelo = ClienteFile.getClientePorNome(centro.getNomeProcurado());
-                    new ClienteVisao(true, modelo);
+                    JOptionPane.showMessageDialog(null, modelo.toString());
+                    int opcao = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja eliminar esse cliente?");
 
+                    if (opcao == JOptionPane.YES_OPTION) {
+                        // eliminar 
+                        modelo.setStatus(false);
+                        new ClienteFile().elimiarDados(modelo);
+                    }
                 } else if (centro.getTipoPesquisa() == 2) {
-                    ClienteFile.pesquisarClientePorTelefone(centro.getTelefoneProcurado());
+                    modelo = ClienteFile.getClientePorTelefone(centro.getTelefoneProcurado());
+                    JOptionPane.showMessageDialog(null, modelo.toString());
+                    int opcao = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja eliminar esse cliente?");
+
+                    if (opcao == JOptionPane.YES_OPTION) {
+                        // eliminar 
+                        modelo.setStatus(false);
+                        new ClienteFile().elimiarDados(modelo);
+                    }
                 }
             }
         }

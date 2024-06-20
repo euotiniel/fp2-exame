@@ -144,6 +144,9 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         if (evt.getSource() == editarClienteItem)
             new EditarCliente();
 
+        if (evt.getSource() == eliminarClienteItem)
+            new EliminarCliente();
+
         if (evt.getSource() == generoLivroItem)
             Tabela2.editarNovosItems("Genero.tab", "Novo genero de livro");
 

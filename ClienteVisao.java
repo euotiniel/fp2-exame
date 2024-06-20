@@ -45,7 +45,7 @@ public class ClienteVisao extends JFrame {
 		private ClienteFile clienteFile;
 
 		public PainelCentro() {
-			setLayout(new GridLayout(7, 4, 5, 10));
+			setLayout(new GridLayout(7, 4));
 
 			clienteFile = new ClienteFile();
 
@@ -85,7 +85,7 @@ public class ClienteVisao extends JFrame {
 		}
 
 		public PainelCentro(ClienteModelo modelo) {
-			setLayout(new GridLayout(7, 4, 5, 10));
+			setLayout(new GridLayout(7, 4));
 
 			clienteFile = new ClienteFile();
 
@@ -114,7 +114,8 @@ public class ClienteVisao extends JFrame {
 			// Linha 3
 
 			add(new JLabel("Provincia"));
-			add(provinciaJCB = provMunCom.getComboBoxFather());
+			add(provinciaJCB = UInterfaceBox.createJComboBoxPersonalTab2("Provincias.tab"));
+			// add(provinciaJCB = provMunCom.getComboBoxFather());
 
 			add(new JLabel("Municipio"));
 			add(municipioJCB = provMunCom.getComboBoxSun());

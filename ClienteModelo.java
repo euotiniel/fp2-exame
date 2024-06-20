@@ -16,7 +16,7 @@ import java.io.*;
 public class ClienteModelo implements RegistGeneric {
 
     int id;
-    StringBufferModelo nome, email, endereco, telefone, provincia, municipio, comuna;
+    StringBufferModelo nome, email, telefone, provincia, municipio, comuna;
     private boolean status;
 
     public ClienteModelo() {
@@ -38,7 +38,7 @@ public class ClienteModelo implements RegistGeneric {
         this.provincia = new StringBufferModelo(provincia, 20);
         this.municipio = new StringBufferModelo(municipio, 20);
         this.comuna = new StringBufferModelo(comuna, 20);
-        this.status = status;
+        this.status = status; 
     }
 
     // Methods GET
@@ -178,5 +178,4 @@ public class ClienteModelo implements RegistGeneric {
         ClienteFile file = new ClienteFile();
         file.alterarDados(this);
     }
-
 }

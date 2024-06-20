@@ -40,9 +40,12 @@ public class ClienteFile extends ObjectsFile {
         try {
             ficheiro.stream.seek(4);
             for (int i = 0; i < ficheiro.getNregistos(); ++i){
-                modelo .read(ficheiro.stream);
-                output += "--------------------------------------------\n";
-                output += modelo.toString() + "\n";
+                modelo.read(ficheiro.stream);
+
+                if (modelo.getStatus() == true) {
+                    output += "--------------------------------------------\n";
+                    output += modelo.toString() + "\n";
+                }
             }
 
             JTextArea area = new JTextArea(40, 60);
@@ -64,9 +67,9 @@ public class ClienteFile extends ObjectsFile {
          ficheiro.stream.seek(4);
          for (int i = 0; i < ficheiro.getNregistos(); ++i){
                 
-             modelo .read(ficheiro.stream);
+             modelo.read(ficheiro.stream);
 
-             if (modelo.getNome().equalsIgnoreCase(getNomeProcurado)) {
+             if (modelo.getNome().equalsIgnoreCase(getNomeProcurado) && modelo.getStatus() == true) {
                  JOptionPane.showMessageDialog(null, modelo.toString());
                  return;
              } 
@@ -87,13 +90,35 @@ public class ClienteFile extends ObjectsFile {
          ficheiro.stream.seek(4);
          for (int i = 0; i < ficheiro.getNregistos(); ++i){
                 
-             modelo .read(ficheiro.stream);
+             modelo.read(ficheiro.stream);
 
-             if (modelo.getNome().equalsIgnoreCase(getNomeProcurado)) {
+             if (modelo.getNome().equalsIgnoreCase(getNomeProcurado) && modelo.getStatus() == true) {
                  return modelo;
              } 
          }
          JOptionPane.showMessageDialog(null, "Nome não encontrado", "Not found", JOptionPane.ERROR_MESSAGE);
+
+     } catch (Exception ex) {
+         ex.printStackTrace();
+     }
+       return modelo; 
+ }
+
+ public static ClienteModelo getClientePorTelefone(String getTelefoneProcurado) {
+     ClienteFile ficheiro = new ClienteFile();
+     ClienteModelo modelo = new ClienteModelo();
+
+     try {
+         ficheiro.stream.seek(4);
+         for (int i = 0; i < ficheiro.getNregistos(); ++i){
+                
+             modelo.read(ficheiro.stream);
+
+             if (modelo.getTelefone().equalsIgnoreCase(getTelefoneProcurado) && modelo.getStatus() == true) {
+                 return modelo;
+             } 
+         }
+         JOptionPane.showMessageDialog(null, "Telefone não encontrado", "Not found", JOptionPane.ERROR_MESSAGE);
 
      } catch (Exception ex) {
          ex.printStackTrace();
@@ -109,9 +134,9 @@ public class ClienteFile extends ObjectsFile {
          ficheiro.stream.seek(4);
          for (int i = 0; i < ficheiro.getNregistos(); ++i){
                 
-             modelo .read(ficheiro.stream);
+             modelo.read(ficheiro.stream);
 
-             if (modelo.getTelefone().equalsIgnoreCase(getTelefoneProcurado)) {
+             if (modelo.getTelefone().equalsIgnoreCase(getTelefoneProcurado) && modelo.getStatus() == true) {
                  JOptionPane.showMessageDialog(null, modelo.toString());
                  return;
              } 
@@ -137,6 +162,32 @@ public class ClienteFile extends ObjectsFile {
                     stream.seek(4);
                     modelo_novo.write(stream);
                     JOptionPane.showMessageDialog(null, "Dados editados com sucesso.");
+                    return;
+                } else {
+                    if (modelo_antigo.getId() + 1 == modelo_novo.getId()) {
+                        modelo_novo.write(stream);
+                        return;
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+ public void elimiarDados (ClienteModelo modelo_novo) {
+        ClienteModelo modelo_antigo = new ClienteModelo();
+
+        try  {
+            stream.seek(4);
+
+            for (int i = 0; i < getNregistos(); ++i) {
+                modelo_antigo.read(stream);
+
+                if (i == 0 && modelo_antigo.getId() == modelo_novo.getId()) {
+                    stream.seek(4);
+                    modelo_novo.write(stream);
+                    JOptionPane.showMessageDialog(null, "Dados eliminados com sucesso.");
                     return;
                 } else {
                     if (modelo_antigo.getId() + 1 == modelo_novo.getId()) {
