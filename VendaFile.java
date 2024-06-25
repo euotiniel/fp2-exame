@@ -10,6 +10,8 @@ import javax.swing.*;
 import SwingComponents.*;
 import Calendario.*;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VendaFile extends ObjectsFile {
     
@@ -57,6 +59,44 @@ public class VendaFile extends ObjectsFile {
         }
         
     }
+
+ public static List<String> getBookTitles() {
+        List<String> titles = new ArrayList<>();
+        LivroFile ficheiro = new LivroFile();
+        LivroModelo modelo = new LivroModelo();
+        try {
+            ficheiro.getStream().seek(4); // Skip the first 4 bytes
+            for (int i = 0; i < ficheiro.getNregistos(); ++i) {
+                modelo.read(ficheiro.getStream());
+                if (modelo.getStatus() == true) {
+                    titles.add(modelo.getTitulo().trim());
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return titles;
+    }
+
+ public static List<String> getClientName() {
+        List<String> names = new ArrayList<>();
+        ClienteFile ficheiro = new ClienteFile();
+        ClienteModelo modelo = new ClienteModelo();
+        try {
+            ficheiro.getStream().seek(4); // Skip the first 4 bytes
+            for (int i = 0; i < ficheiro.getNregistos(); ++i) {
+                modelo.read(ficheiro.getStream());
+                if (modelo.getStatus() == true) {
+                    names.add(modelo.getNome().trim());
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return names;
+    }
+
+
 
     // public static StringVector getAllNames() {
     //     VendaFile ficheiro = new VendaFile();

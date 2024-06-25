@@ -9,12 +9,19 @@ Data: 25.06.2024
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 import SwingComponents.*;
 import Calendario.*;
 import javax.swing.UIManager.*;
 
+import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 public class VendaVisao extends JFrame {
-	
+
 	PainelCentro centro;
 	PainelSul sul;
 	boolean editar;
@@ -42,6 +49,7 @@ public class VendaVisao extends JFrame {
 		JTextField idJTF, quantidadeJTF, valorTotalJTF, dataVendaJTF;
 		JComboBox<String> clienteJCB, livroJCB;
 		private VendaFile vendaFile;
+
 		public PainelCentro() {
 			setLayout(new GridLayout(3, 4, 5, 10));
 
@@ -50,17 +58,17 @@ public class VendaVisao extends JFrame {
 
 			add(new Label("ID"));
 			add(idJTF = new JTextField());
-			idJTF.setText( String.valueOf(vendaFile.getProximoCodigo()));
+			idJTF.setText(String.valueOf(vendaFile.getProximoCodigo()));
 			// idJTF.setText( "" + livroFile.getProximoCodigo());
 			idJTF.setFocusable(false);
 
 			add(new Label("Título do livro"));
-			add(livroJCB = UInterfaceBox.createJComboBoxPersonalTab2("Genero.tab"));
+        add(livroJCB = new JComboBox<>(VendaFile.getBookTitles().toArray(new String[0])));
 
 			// Linha 2
 
 			add(new Label("Cliente"));
-			add(clienteJCB = UInterfaceBox.createJComboBoxPersonalTab2("Genero.tab"));
+			add(livroJCB = new JComboBox<>(VendaFile.getClientName().toArray(new String[0])));
 
 			add(new Label("Quantidade"));
 			add(quantidadeJTF = new JTextField());
@@ -71,12 +79,18 @@ public class VendaVisao extends JFrame {
 			add(valorTotalJTF = new JTextField());
 
 			add(new Label("Data"));
-			add(dataVendaJTF = new JTextField());
+
+			// Create and format the current date
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+			String currentDate = sdf.format(new Date());
+
+			// Create the JTextField and set its text to the current date
+			add(dataVendaJTF = new JTextField(currentDate));
 			dataVendaJTF.setFocusable(false);
 		}
 
 		public PainelCentro(VendaModelo modelo) {
-			setLayout(new GridLayout(3, 4,5, 10));
+			setLayout(new GridLayout(3, 4, 5, 10));
 
 			vendaFile = new VendaFile();
 			// Linha 1
@@ -106,7 +120,7 @@ public class VendaVisao extends JFrame {
 			add(new Label("Valor total"));
 			add(valorTotalJTF = new JTextField());
 			valorTotalJTF.setText(" " + modelo.getValorTotal());
- 
+
 			add(new Label("Data"));
 			add(dataVendaJTF = new JTextField());
 			dataVendaJTF.setText(modelo.getDataVenda());
@@ -137,7 +151,6 @@ public class VendaVisao extends JFrame {
 			return dataVendaJTF.getText().trim();
 		}
 
-
 		// Methods SET
 		public void setId(int id) {
 			idJTF.setText(" " + id);
@@ -166,7 +179,8 @@ public class VendaVisao extends JFrame {
 		// Save
 
 		public void cadastrar() {
-			VendaModelo modelo = new VendaModelo(getId(), getLivro(), getCliente(), getQuantidade(), getValorTotal(), getDataVenda(), true);
+			VendaModelo modelo = new VendaModelo(getId(), getLivro(), getCliente(), getQuantidade(), getValorTotal(),
+					getDataVenda(), true);
 
 			JOptionPane.showMessageDialog(null, modelo.toString());
 
@@ -176,7 +190,8 @@ public class VendaVisao extends JFrame {
 
 		// Edit
 		public void editar() {
-			VendaModelo modelo = new VendaModelo(getId(), getLivro(), getCliente(), getQuantidade(), getValorTotal(), getDataVenda(), true);
+			VendaModelo modelo = new VendaModelo(getId(), getLivro(), getCliente(), getQuantidade(), getValorTotal(),
+					getDataVenda(), true);
 
 			JOptionPane.showMessageDialog(null, modelo.toString());
 
