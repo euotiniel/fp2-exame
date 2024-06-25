@@ -68,7 +68,7 @@ public class VendaVisao extends JFrame {
 			// Linha 2
 
 			add(new Label("Cliente"));
-			add(livroJCB = new JComboBox<>(VendaFile.getClientName().toArray(new String[0])));
+			add(clienteJCB = new JComboBox<>(VendaFile.getClientNames().toArray(new String[0])));
 
 			add(new Label("Quantidade"));
 			add(quantidadeJTF = new JTextField());
@@ -102,13 +102,13 @@ public class VendaVisao extends JFrame {
 			idJTF.setFocusable(false);
 
 			add(new Label("Título do livro"));
-			add(livroJCB = UInterfaceBox.createJComboBoxPersonalTab2("Genero.tab"));
-			livroJCB.setSelectedItem(modelo.getLivro());
+        add(livroJCB = new JComboBox<>(VendaFile.getBookTitles().toArray(new String[0])));
+        livroJCB.setSelectedItem(modelo.getLivro());
 
 			// Linha 2
 
 			add(new Label("Cliente"));
-			add(clienteJCB = UInterfaceBox.createJComboBoxPersonalTab2("Genero.tab"));
+			add(clienteJCB = new JComboBox<>(VendaFile.getClientNames().toArray(new String[0])));
 			clienteJCB.setSelectedItem(modelo.getCliente());
 
 			add(new Label("Quantidade"));
@@ -134,19 +134,27 @@ public class VendaVisao extends JFrame {
 		public String getLivro() {
 			return String.valueOf(livroJCB.getSelectedItem());
 		}
-
+	
 		public String getCliente() {
 			return String.valueOf(clienteJCB.getSelectedItem());
 		}
-
+	
 		public int getQuantidade() {
-			return Integer.parseInt(quantidadeJTF.getText().trim());
+			try {
+				return Integer.parseInt(quantidadeJTF.getText().trim());
+			} catch (NumberFormatException e) {
+				return 0; // Handle parsing error gracefully
+			}
 		}
-
+	
 		public double getValorTotal() {
-			return Double.parseDouble(valorTotalJTF.getText().trim());
+			try {
+				return Double.parseDouble(valorTotalJTF.getText().trim());
+			} catch (NumberFormatException e) {
+				return 0.0; // Handle parsing error gracefully
+			}
 		}
-
+	
 		public String getDataVenda() {
 			return dataVendaJTF.getText().trim();
 		}
@@ -159,22 +167,23 @@ public class VendaVisao extends JFrame {
 		public void setLivro(String livro) {
 			livroJCB.setSelectedItem(livro);
 		}
-
+	
 		public void setCliente(String cliente) {
 			clienteJCB.setSelectedItem(cliente);
 		}
-
+	
 		public void setQuantidade(int quantidade) {
 			quantidadeJTF.setText(" " + quantidade);
 		}
-
+	
 		public void setValorTotal(double valorTotal) {
 			valorTotalJTF.setText(" " + valorTotal);
 		}
-
+	
 		public void setDataVenda(String dataVenda) {
 			dataVendaJTF.setText(dataVenda);
 		}
+	
 
 		// Save
 

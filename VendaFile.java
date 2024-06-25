@@ -78,7 +78,7 @@ public class VendaFile extends ObjectsFile {
         return titles;
     }
 
- public static List<String> getClientName() {
+ public static List<String> getClientNames() {
         List<String> names = new ArrayList<>();
         ClienteFile ficheiro = new ClienteFile();
         ClienteModelo modelo = new ClienteModelo();
