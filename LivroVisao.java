@@ -2,7 +2,7 @@
 Tema: Gestão de uma Livraria
 Nome: Otoniel Emanuel
 Numero: 33039
-Ficheiro: LivroVisaosao.java
+Ficheiro: LivroVisao.java
 Data: 28.05.2024
 --------------------------------------*/
 

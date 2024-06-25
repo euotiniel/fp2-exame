@@ -17,7 +17,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
     private JMenuBar menuBar;
     private JMenu ficheiroMenu, operacoesMenu, listagemMenu, pesquisaMenu, tabelasMenu, ajudaMenu;
     private JMenuItem novoLivroItem, editarLivroItem, eliminarLivroItem, sair;
-    private JMenuItem novoClienteItem, novaVendaItem, editarClienteItem, eliminarClienteItem;
+    private JMenuItem novoClienteItem, editarClienteItem, eliminarClienteItem, novaVendaItem, editarVendaItem, eliminarVendaItem;
     private JMenuItem listarLivroItem, listarClienteItem, pesquisarLivroItem, pesquisarClienteItem;
     private JMenuItem generoLivroItem, formaDePagamentoItem, estadoDoLivroItem, provinciaMoradaItem, municipioMoradaItem, comunaMoradaItem;;
     private JMenuItem ajudaAplicacaoItem, ajudaAutorItem;
@@ -79,6 +79,8 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         operacoesMenu.add(eliminarClienteItem = new JMenuItem("Eliminar Cliente"));
         operacoesMenu.addSeparator();
         operacoesMenu.add(novaVendaItem = new JMenuItem("Nova Venda"));
+        operacoesMenu.add(editarVendaItem = new JMenuItem("Editar Venda"));
+        operacoesMenu.add(eliminarVendaItem = new JMenuItem("Eliminar Venda"));
 
         // Opções do menu Listagens
         listagemMenu.add(listarLivroItem = new JMenuItem("Listar livros"));
@@ -113,6 +115,9 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         novoClienteItem.addActionListener(this);
         editarClienteItem.addActionListener(this);
         eliminarClienteItem.addActionListener(this);
+        novaVendaItem.addActionListener(this);
+        editarVendaItem.addActionListener(this);
+        eliminarVendaItem.addActionListener(this);
         sair.addActionListener(this);
         listarLivroItem.addActionListener(this);
         listarClienteItem.addActionListener(this);
@@ -146,6 +151,9 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         if (evt.getSource() == eliminarClienteItem)
             new EliminarCliente();
+
+        if (evt.getSource() == novaVendaItem)
+            new VendaVisao(false, new VendaModelo());
 
         if (evt.getSource() == generoLivroItem)
             Tabela2.editarNovosItems("Genero.tab", "Novo genero de livro");
