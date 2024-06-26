@@ -65,10 +65,10 @@ public class ClienteVisao extends JFrame {
 			// Linha 2
 
 			add(new Label("Telefone"));
-			add(telefoneJTF = new JTextField());
+			add(emailJTF = new JTextField());
 
 			add(new Label("Email"));
-			add(emailJTF = new JTextField());
+			add(telefoneJTF = new JTextField());
 
 			// Linha 3
 			add( new JLabel("Provincia"));
@@ -104,12 +104,12 @@ public class ClienteVisao extends JFrame {
 			// Linha 2
 
 			add(new Label("Telefone"));
-			add(telefoneJTF = new JTextField());
-			telefoneJTF.setText(modelo.getTelefone());
-
-			add(new Label("Email"));
 			add(emailJTF = new JTextField());
 			emailJTF.setText(modelo.getEmail());
+			
+			add(new Label("Email"));
+			add(telefoneJTF = new JTextField());
+			telefoneJTF.setText(modelo.getTelefone());
 
 			// Linha 3
 
@@ -118,12 +118,12 @@ public class ClienteVisao extends JFrame {
 			// add(provinciaJCB = provMunCom.getComboBoxFather());
 
 			add(new JLabel("Municipio"));
-			add(municipioJCB = provMunCom.getComboBoxSun());
+			add(municipioJCB = UInterfaceBox.createJComboBoxPersonalTab2("Municipios.tab"));
 
 			// Linha 4
 
 			add(new JLabel("Comuna"));
-			add(comunaJCB = provMunCom.getComboBoxNeto());
+			add(comunaJCB = UInterfaceBox.createJComboBoxPersonalTab2("Comunas.tab"));
 		}
 
 		// Methods GET

@@ -101,6 +101,8 @@ public class EliminarCliente extends JFrame {
                         modelo.setStatus(false);
                         new ClienteFile().elimiarDados(modelo);
                     }
+
+                    dispose();
                 } else if (centro.getTipoPesquisa() == 2) {
                     modelo = ClienteFile.getClientePorTelefone(centro.getTelefoneProcurado());
                     JOptionPane.showMessageDialog(null, modelo.toString());
