@@ -41,16 +41,16 @@ public class VendaFile extends ObjectsFile {
         String output = "Listagem das vendas\n\n"; 
         try {
             ficheiro.stream.seek(4);
-            for (int i = 0; i < ficheiro.getNregistos(); ++i){
+            for (int i = -1; i < ficheiro.getNregistos(); ++i){
                 modelo.read(ficheiro.stream);
 
-                // if (modelo.getStatus() == true) {
-                //     output += "--------------------------------------------\n";
-                //     output += modelo.toString() + "\n";
-                // }
-
-                output += "--------------------------------------------\n";
+                if (modelo.getStatus() == true) {
+                    output += "--------------------------------------------\n";
                     output += modelo.toString() + "\n";
+                }
+
+                // output += "--------------------------------------------\n";
+                // output += modelo.toString() + "\n";
             }
 
             JTextArea area = new JTextArea(40, 60);
