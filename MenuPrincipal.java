@@ -18,7 +18,8 @@ public class MenuPrincipal extends JFrame implements ActionListener {
     private JMenu ficheiroMenu, operacoesMenu, listagemMenu, pesquisaMenu, tabelasMenu, ajudaMenu;
     private JMenuItem novoLivroItem, editarLivroItem, eliminarLivroItem, sair;
     private JMenuItem novoClienteItem, editarClienteItem, eliminarClienteItem, novaVendaItem, editarVendaItem, eliminarVendaItem;
-    private JMenuItem listarLivroItem, listarClienteItem, pesquisarLivroItem, pesquisarClienteItem;
+    private JMenuItem listarLivroItem, listarClienteItem, listarVendaItem;
+    private JMenuItem pesquisarLivroItem, pesquisarClienteItem;
     private JMenuItem generoLivroItem, formaDePagamentoItem, estadoDoLivroItem, provinciaMoradaItem, municipioMoradaItem, comunaMoradaItem;;
     private JMenuItem ajudaAplicacaoItem, ajudaAutorItem;
     
@@ -86,6 +87,8 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         listagemMenu.add(listarLivroItem = new JMenuItem("Listar livros"));
         listagemMenu.addSeparator();
         listagemMenu.add(listarClienteItem = new JMenuItem("Listar clientes"));
+        listagemMenu.addSeparator();
+        listagemMenu.add(listarVendaItem = new JMenuItem("Listar Vendas"));
 
         // Opções do menu Pesquisas
         pesquisaMenu.add(pesquisarLivroItem = new JMenuItem("Pesquisar livro"));
@@ -112,24 +115,32 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         novoLivroItem.addActionListener(this);
         editarLivroItem.addActionListener(this);
         eliminarLivroItem.addActionListener(this);
+        listarLivroItem.addActionListener(this);
+
         novoClienteItem.addActionListener(this);
         editarClienteItem.addActionListener(this);
         eliminarClienteItem.addActionListener(this);
+        listarClienteItem.addActionListener(this);
+
         novaVendaItem.addActionListener(this);
         editarVendaItem.addActionListener(this);
         eliminarVendaItem.addActionListener(this);
-        sair.addActionListener(this);
-        listarLivroItem.addActionListener(this);
-        listarClienteItem.addActionListener(this);
+        listarVendaItem.addActionListener(this);
+
         ajudaAutorItem.addActionListener(this);
         generoLivroItem.addActionListener(this);
         formaDePagamentoItem.addActionListener(this);
         estadoDoLivroItem.addActionListener(this);
+        
         provinciaMoradaItem.addActionListener(this);
         municipioMoradaItem.addActionListener(this);
         comunaMoradaItem.addActionListener(this);
+
         pesquisarLivroItem.addActionListener(this);
         pesquisarClienteItem.addActionListener(this);
+        
+        sair.addActionListener(this);
+
     }
 
     public void actionPerformed(ActionEvent evt) {
@@ -179,6 +190,9 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             LivroFile.listarLivros();
         if (evt.getSource() == listarClienteItem)
             ClienteFile.listarClientes();
+        if (evt.getSource() == listarVendaItem)
+            VendaFile.listarVendas();
+
         if (evt.getSource() == pesquisarLivroItem)
             new PesquisarLivro();
         if (evt.getSource() == pesquisarClienteItem)

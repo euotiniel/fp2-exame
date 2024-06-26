@@ -44,10 +44,13 @@ public class VendaFile extends ObjectsFile {
             for (int i = 0; i < ficheiro.getNregistos(); ++i){
                 modelo.read(ficheiro.stream);
 
-                if (modelo.getStatus() == true) {
-                    output += "--------------------------------------------\n";
+                // if (modelo.getStatus() == true) {
+                //     output += "--------------------------------------------\n";
+                //     output += modelo.toString() + "\n";
+                // }
+
+                output += "--------------------------------------------\n";
                     output += modelo.toString() + "\n";
-                }
             }
 
             JTextArea area = new JTextArea(40, 60);
