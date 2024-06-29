@@ -22,8 +22,8 @@ public class EliminarCliente extends JFrame {
         getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
         getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
         ImageIcon appIcone = new ImageIcon(
-            "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
-    setIconImage(appIcone.getImage());
+                "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
+        setIconImage(appIcone.getImage());
         setSize(300, 200);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -103,7 +103,7 @@ public class EliminarCliente extends JFrame {
                     int opcao = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja eliminar esse cliente?");
 
                     if (opcao == JOptionPane.YES_OPTION) {
-                        // eliminar 
+                        // eliminar
                         modelo.setStatus(false);
                         new ClienteFile().elimiarDados(modelo);
                     }
@@ -115,7 +115,7 @@ public class EliminarCliente extends JFrame {
                     int opcao = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja eliminar esse cliente?");
 
                     if (opcao == JOptionPane.YES_OPTION) {
-                        // eliminar 
+                        // eliminar
                         modelo.setStatus(false);
                         new ClienteFile().elimiarDados(modelo);
                     }

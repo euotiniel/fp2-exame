@@ -41,7 +41,7 @@ public class VendaFile extends ObjectsFile {
         String output = "Listagem das vendas\n\n"; 
         try {
             ficheiro.stream.seek(4);
-            for (int i = -1; i < ficheiro.getNregistos(); ++i){
+            for (int i = 0; i < ficheiro.getNregistos(); ++i){
                 modelo.read(ficheiro.stream);
 
                 if (modelo.getStatus() == true) {

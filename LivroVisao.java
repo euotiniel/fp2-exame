@@ -42,9 +42,9 @@ public class LivroVisao extends JFrame {
 	}
 
 	class PainelCentro extends JPanel {
-		JTextField idJTF, tituloJTF, autorJTF, precoJTF;
+		JTextField idJTF, tituloJTF, autorJTF;
 		JComboBox<String> generoJCB, estadoDoLivroJCB;
-		JSpinner quantidadeEstoqueJS;
+		JSpinner quantidadeEstoqueJS, precoJS;
 		private LivroFile livroFile;
 
 		public PainelCentro() {
@@ -73,7 +73,7 @@ public class LivroVisao extends JFrame {
 			// Linha 3
 
 			add(new Label("Preço"));
-			add(precoJTF = new JTextField());
+			add(precoJS = new JSpinner());
 
 			add(new Label("Quantidade"));
 			add(quantidadeEstoqueJS = new JSpinner());
@@ -113,8 +113,8 @@ public class LivroVisao extends JFrame {
 			// Linha 3
 
 			add(new Label("Preço"));
-			add(precoJTF = new JTextField());
-			precoJTF.setText(" " + modelo.getPreco());
+			add(precoJS = new JSpinner());
+			precoJS.setValue(modelo.getPreco());
 
 			add(new Label("Quantidade"));
 			add(quantidadeEstoqueJS = new JSpinner());
@@ -148,8 +148,8 @@ public class LivroVisao extends JFrame {
 			return String.valueOf(estadoDoLivroJCB.getSelectedItem());
 		}
 
-		public String getPreco() {
-			return precoJTF.getText().trim();
+		public int getPreco() {
+			return (int) precoJS.getValue();
 		}
 
 		public int getQuantidadeEstoque() {
@@ -177,8 +177,8 @@ public class LivroVisao extends JFrame {
 			estadoDoLivroJCB.setSelectedItem(estadoDoLivro);
 		}
 
-		public void setPreco(String preco) {
-			precoJTF.setText(" " + preco);
+		public void setPreco(int preco) {
+			precoJS.setValue(preco);
 		}
 
 		public void setQuantidadeEstoque(int quantidadeEstoque) {
@@ -239,8 +239,8 @@ public class LivroVisao extends JFrame {
 				return;
 			}
 
-			if (centro.getPreco().isEmpty()) {
-				JOptionPane.showMessageDialog(null, "O campo 'Preço do livro' não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+			if (centro.getPreco() <= 100) {
+				JOptionPane.showMessageDialog(null, "O campo 'Preço do livro' deve conter um valor válido.", "Erro", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 

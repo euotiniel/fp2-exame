@@ -31,8 +31,6 @@ public class PesquisarLivro extends JFrame {
         setVisible(true);
     }
 
-    
-
     class PainelCentro extends JPanel implements ActionListener {
         JComboBox tituloJCB, generoJCB;
         JTextField autorJTF;

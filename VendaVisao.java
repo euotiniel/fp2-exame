@@ -39,9 +39,9 @@ public class VendaVisao extends JFrame {
 		}
 		setTitle("Nova venda");
 		ImageIcon appIcone = new ImageIcon(
-			"C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
-	setIconImage(appIcone.getImage());
-		defineTheme();
+				"C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
+		setIconImage(appIcone.getImage());
+		// defineTheme();
 		pack();
 		// setSize(600, 400);
 		setLocationRelativeTo(null);
@@ -66,7 +66,7 @@ public class VendaVisao extends JFrame {
 			idJTF.setFocusable(false);
 
 			add(new Label("Título do livro"));
-        add(livroJCB = new JComboBox<>(VendaFile.getBookTitles().toArray(new String[0])));
+			add(livroJCB = new JComboBox<>(VendaFile.getBookTitles().toArray(new String[0])));
 
 			// Linha 2
 
@@ -78,8 +78,8 @@ public class VendaVisao extends JFrame {
 
 			// Linha 3
 
-			add(new Label("Valor total"));
-			add(valorTotalJTF = new JTextField());
+			// add(new Label("Valor total"));
+			// add(valorTotalJTF = new JTextField());
 
 			add(new Label("Data"));
 
@@ -87,7 +87,6 @@ public class VendaVisao extends JFrame {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 			String currentDate = sdf.format(new Date());
 
-			// Create the JTextField and set its text to the current date
 			add(dataVendaJTF = new JTextField(currentDate));
 			dataVendaJTF.setFocusable(false);
 		}
@@ -105,8 +104,8 @@ public class VendaVisao extends JFrame {
 			idJTF.setFocusable(false);
 
 			add(new Label("Título do livro"));
-        add(livroJCB = new JComboBox<>(VendaFile.getBookTitles().toArray(new String[0])));
-        livroJCB.setSelectedItem(modelo.getLivro());
+			add(livroJCB = new JComboBox<>(VendaFile.getBookTitles().toArray(new String[0])));
+			livroJCB.setSelectedItem(modelo.getLivro());
 
 			// Linha 2
 
@@ -123,6 +122,7 @@ public class VendaVisao extends JFrame {
 			add(new Label("Valor total"));
 			add(valorTotalJTF = new JTextField());
 			valorTotalJTF.setText(" " + modelo.getValorTotal());
+			valorTotalJTF.setFocusable(false);
 
 			add(new Label("Data"));
 			add(dataVendaJTF = new JTextField());
@@ -137,11 +137,11 @@ public class VendaVisao extends JFrame {
 		public String getLivro() {
 			return String.valueOf(livroJCB.getSelectedItem());
 		}
-	
+
 		public String getCliente() {
 			return String.valueOf(clienteJCB.getSelectedItem());
 		}
-	
+
 		public int getQuantidade() {
 			try {
 				return Integer.parseInt(quantidadeJTF.getText().trim());
@@ -149,15 +149,11 @@ public class VendaVisao extends JFrame {
 				return 0; // Handle parsing error gracefully
 			}
 		}
-	
+
 		public double getValorTotal() {
-			try {
-				return Double.parseDouble(valorTotalJTF.getText().trim());
-			} catch (NumberFormatException e) {
-				return 0.0; // Handle parsing error gracefully
-			}
+			return LivroFile.totalMoney(centro.getLivro(), centro.getQuantidade());
 		}
-	
+
 		public String getDataVenda() {
 			return dataVendaJTF.getText().trim();
 		}
@@ -170,23 +166,22 @@ public class VendaVisao extends JFrame {
 		public void setLivro(String livro) {
 			livroJCB.setSelectedItem(livro);
 		}
-	
+
 		public void setCliente(String cliente) {
 			clienteJCB.setSelectedItem(cliente);
 		}
-	
+
 		public void setQuantidade(int quantidade) {
 			quantidadeJTF.setText(" " + quantidade);
 		}
-	
+
 		public void setValorTotal(double valorTotal) {
 			valorTotalJTF.setText(" " + valorTotal);
 		}
-	
+
 		public void setDataVenda(String dataVenda) {
 			dataVendaJTF.setText(dataVenda);
 		}
-	
 
 		// Save
 
@@ -217,11 +212,41 @@ public class VendaVisao extends JFrame {
 
 		public PainelSul() {
 			add(criarVendaJB = new JButton("Criar venda"));
-
+			ImageIcon createIcon = new ImageIcon(
+					"C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\add.png");
+			Image createImagem = createIcon.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
+			createIcon = new ImageIcon(createImagem);
+			criarVendaJB.setIcon(createIcon);
 			criarVendaJB.addActionListener(this);
 		}
 
 		public void actionPerformed(ActionEvent evt) {
+
+			if (centro.getLivro().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "O campo 'Livro' não pode estar vazio.", "Erro",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			if (centro.getCliente().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "O campo 'Cliente' não pode estar vazio.", "Erro",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			if (centro.getQuantidade() <= 0 || centro.getQuantidade() > LivroFile.getBookQuantity(centro.getLivro())) {
+				JOptionPane.showMessageDialog(null, "O campo 'Quantidade' não pode estar vazio e nem superior ou estoque existente.", "Erro",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			if (centro.getCliente().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "O campo 'Cliente' não pode estar vazio.", "Erro",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			
 			if (evt.getSource() == criarVendaJB) {
 				if (editar) {
 					centro.editar();

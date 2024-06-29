@@ -113,7 +113,7 @@ public class VendaModelo implements RegistGeneric {
         str += "Quantidade: " + getQuantidade() + "\n";
         str += "Valor total: " + getValorTotal() + " kzs\n";
         str += "Data da venda: " + getDataVenda() + "\n";
-        str += "Status: " + getStatus() + "\n";
+        // str += "Status: " + getStatus() + "\n";
 
         return str;
     }
@@ -121,7 +121,7 @@ public class VendaModelo implements RegistGeneric {
     // Tamanho geral de cada registro/modelo
     public long sizeof() {
         try {
-            return 160 * 2 + 4 + 4 + 1;
+            return 110 * 2 + 4 + 4 + 4 + 1;
         } catch (Exception ex) {
             return 0;
         }

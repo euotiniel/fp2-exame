@@ -121,6 +121,72 @@ public class LivroFile extends ObjectsFile {
 
         return modelo;
     }
+
+    public  static int getBookQuantity(String tituloProcurado) {
+        LivroFile ficheiro = new LivroFile();
+        LivroModelo modelo = new LivroModelo();
+
+        try {
+            ficheiro.stream.seek(4);
+            for (int i = 0; i < ficheiro.getNregistos(); ++i){
+                
+                modelo.read(ficheiro.stream);
+
+                if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado) && modelo.getStatus() == true) {
+                    return modelo.getQuantidadeEstoque();
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    public  static double totalMoney(String tituloProcurado, int myQtt) {
+        LivroFile ficheiro = new LivroFile();
+        LivroModelo modelo = new LivroModelo();
+
+        try {
+            ficheiro.stream.seek(4);
+            for (int i = 0; i < ficheiro.getNregistos(); ++i){
+                
+                modelo.read(ficheiro.stream);
+
+                if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado) && modelo.getStatus() == true) {
+                    double money = myQtt * modelo.getPreco();
+                    return money;
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    public  static double updateStock(String tituloProcurado, int myQtt) {
+        LivroFile ficheiro = new LivroFile();
+        LivroModelo modelo = new LivroModelo();
+
+        try {
+            ficheiro.stream.seek(4);
+            for (int i = 0; i < ficheiro.getNregistos(); ++i){
+                
+                modelo.read(ficheiro.stream);
+
+                if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado) && modelo.getStatus() == true) {
+                    int newStock = modelo.getQuantidadeEstoque() - myQtt;
+                    modelo.setQuantidadeEstoque(newStock);
+                    // return modelo.setQuantidadeEstoque();
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return modelo.getQuantidadeEstoque();
+    }
     
     public  static LivroModelo getLivroPorAutor(String autorProcurado) {
         LivroFile ficheiro = new LivroFile();

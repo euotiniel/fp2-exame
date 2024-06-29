@@ -12,10 +12,11 @@ import java.awt.event.*;
 import SwingComponents.*;
 import Calendario.*;
 
-public class EditarLivro extends JFrame{
+public class EditarLivro extends JFrame {
     PainelCentro centro;
     PainelSul sul;
-     public EditarLivro () {
+
+    public EditarLivro() {
         super("Pesquisa para editar livro");
         ImageIcon appIcone = new ImageIcon(
                 "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
@@ -27,18 +28,18 @@ public class EditarLivro extends JFrame{
         // pack();
         setLocationRelativeTo(null);
         setVisible(true);
-     }
+    }
 
-     class PainelCentro extends JPanel implements ActionListener {
+    class PainelCentro extends JPanel implements ActionListener {
 
-     JComboBox tituloJCB, generoJCB;
+        JComboBox tituloJCB, generoJCB;
         JTextField autorJTF;
         JRadioButton searchTitulo, searchAutor, searchGender;
         JViewport searchVoid;
         ButtonGroup group;
 
         public PainelCentro() {
-            setLayout(new GridLayout(6,2));
+            setLayout(new GridLayout(6, 2));
             group = new ButtonGroup();
             add(searchTitulo = new JRadioButton("Título", true));
             add(searchAutor = new JRadioButton("Autor"));
@@ -111,7 +112,7 @@ public class EditarLivro extends JFrame{
             add(pesquisarJB = new JButton(" Editar livro"));
             ImageIcon editIcon = new ImageIcon(
                     "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\edit.png");
-            Image editImagem = editIcon.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH); 
+            Image editImagem = editIcon.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
             editIcon = new ImageIcon(editImagem);
             pesquisarJB.setIcon(editIcon);
             pesquisarJB.addActionListener(this);
@@ -133,5 +134,5 @@ public class EditarLivro extends JFrame{
                 }
             }
         }
-        }
+    }
 }

@@ -113,7 +113,7 @@ public class ClienteModelo implements RegistGeneric {
     // toString
 
     public String toString () {
-        String str = "Dados do cliente \n\n";
+        String str = "Dados do (a) cliente " + getNome() + "\n\n";
 
         str += "id: " + getId() + "\n";
         str += "Nome: " + getNome() + "\n";
@@ -122,7 +122,7 @@ public class ClienteModelo implements RegistGeneric {
         str += "Provincia: " + getProvincia() + "\n";
         str += "Municipio: " + getMunicipio() + "\n";
         str += "Comuna: " + getComuna() + "\n";
-        str += "Status: " + getStatus() + "\n";
+        // str += "Status: " + getStatus() + "\n";
 
         return str;
     }
