@@ -10,12 +10,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import SwingComponents.*;
-import SwingComponentsSrc.UInterfaceBox;
 import Calendario.*;
 import javax.swing.UIManager.*;
 
 public class LivroVisao extends JFrame {
-	
+
 	PainelCentro centro;
 	PainelSul sul;
 	boolean editar;
@@ -32,9 +31,9 @@ public class LivroVisao extends JFrame {
 			getContentPane().add(centro = new PainelCentro(modelo), BorderLayout.CENTER);
 		}
 		setTitle("Cadastro de Novo Livro");
-		        ImageIcon appIcone = new ImageIcon(
-                "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
-        setIconImage(appIcone.getImage());
+		ImageIcon appIcone = new ImageIcon(
+				"C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
+		setIconImage(appIcone.getImage());
 		// defineTheme();
 		pack();
 		// setSize(600, 400);
@@ -47,6 +46,7 @@ public class LivroVisao extends JFrame {
 		JComboBox<String> generoJCB, estadoDoLivroJCB;
 		JSpinner quantidadeEstoqueJS;
 		private LivroFile livroFile;
+
 		public PainelCentro() {
 			setLayout(new GridLayout(4, 2, 5, 10));
 
@@ -55,7 +55,7 @@ public class LivroVisao extends JFrame {
 
 			add(new Label("ID"));
 			add(idJTF = new JTextField());
-			idJTF.setText( String.valueOf(livroFile.getProximoCodigo()));
+			idJTF.setText(String.valueOf(livroFile.getProximoCodigo()));
 			// idJTF.setText( "" + livroFile.getProximoCodigo());
 			idJTF.setFocusable(false);
 
@@ -115,7 +115,7 @@ public class LivroVisao extends JFrame {
 			add(new Label("Preço"));
 			add(precoJTF = new JTextField());
 			precoJTF.setText(" " + modelo.getPreco());
- 
+
 			add(new Label("Quantidade"));
 			add(quantidadeEstoqueJS = new JSpinner());
 			quantidadeEstoqueJS.setValue(modelo.getQuantidadeEstoque());
@@ -156,7 +156,6 @@ public class LivroVisao extends JFrame {
 			return (Integer) quantidadeEstoqueJS.getValue();
 		}
 
-
 		// Methods SET
 		public void setId(int id) {
 			idJTF.setText(" " + id);
@@ -189,7 +188,8 @@ public class LivroVisao extends JFrame {
 		// Save
 
 		public void cadastrar() {
-			LivroModelo modelo = new LivroModelo(getId(), getTitulo(), getAutor(), getGenero(), getEstado(), getPreco(), getQuantidadeEstoque(), true);
+			LivroModelo modelo = new LivroModelo(getId(), getTitulo(), getAutor(), getGenero(), getEstado(), getPreco(),
+					getQuantidadeEstoque(), true);
 
 			JOptionPane.showMessageDialog(null, modelo.toString());
 
@@ -213,16 +213,47 @@ public class LivroVisao extends JFrame {
 		JButton cadastrarJB;
 
 		public PainelSul() {
-			add(cadastrarJB = new JButton("Cadastrar livro"));
-ImageIcon createIcon = new ImageIcon(
-                    "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\enter.png");
-            Image createImagem = createIcon.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH); 
-            createIcon = new ImageIcon(createImagem);
-            cadastrarJB.setIcon(createIcon);
+			add(cadastrarJB = new JButton(" Cadastrar livro"));
+			ImageIcon createIcon = new ImageIcon(
+					"C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\add.png");
+			Image createImagem = createIcon.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
+			createIcon = new ImageIcon(createImagem);
+			cadastrarJB.setIcon(createIcon);
 			cadastrarJB.addActionListener(this);
 		}
 
 		public void actionPerformed(ActionEvent evt) {
+
+			if (centro.getTitulo().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "O campo 'Título do livro' não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			if (centro.getAutor().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "O campo 'Autor do livro' não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			if (centro.getGenero().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "O campo 'Genero do livro' não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			if (centro.getPreco().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "O campo 'Preço do livro' não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			if (centro.getQuantidadeEstoque() < 1) {
+				JOptionPane.showMessageDialog(null, "O campo 'Quantidade do livro' não pode estar vazio e nem conter número negativos.", "Erro", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			if (centro.getEstado().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "O campo 'Estado do livro' não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
 			if (evt.getSource() == cadastrarJB) {
 				if (editar) {
 					centro.editar();

@@ -106,7 +106,12 @@ public class EliminarLivro extends JFrame{
         JButton pesquisarJB;
 
         public PainelSul() {
-            add(pesquisarJB = new JButton("Eliminar livro"));
+            add(pesquisarJB = new JButton(" Eliminar livro"));
+            ImageIcon deleteIcon = new ImageIcon(
+                    "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\bin.png");
+            Image deleteImagem = deleteIcon.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH); 
+            deleteIcon = new ImageIcon(deleteImagem);
+            pesquisarJB.setIcon(deleteIcon);
             pesquisarJB.addActionListener(this);
         }
 

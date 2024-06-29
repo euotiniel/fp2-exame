@@ -106,7 +106,12 @@ public class EditarLivro extends JFrame{
         JButton pesquisarJB;
 
         public PainelSul() {
-            add(pesquisarJB = new JButton("Pesquisar livro"));
+            add(pesquisarJB = new JButton(" Editar livro"));
+            ImageIcon editIcon = new ImageIcon(
+                    "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\edit.png");
+            Image editImagem = editIcon.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH); 
+            editIcon = new ImageIcon(editImagem);
+            pesquisarJB.setIcon(editIcon);
             pesquisarJB.addActionListener(this);
         }
 
