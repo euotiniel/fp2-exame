@@ -23,7 +23,8 @@ public class LoginVisao extends JFrame {
                 "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
         setIconImage(appIcone.getImage());
         setTitle("Entrar");
-        setSize(400, 300);
+        setSize(420, 350);
+        // pack();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
@@ -37,27 +38,49 @@ public class LoginVisao extends JFrame {
 
         public PainelCentro() {
             setLayout(new GridBagLayout());
+            setBackground(Color.WHITE);
+
             GridBagConstraints gbc = new GridBagConstraints();
             gbc.insets = new Insets(10, 10, 10, 10); // Define margens para os componentes
 
+            // Adicionando imagem no centro
+            ImageIcon livroIcone = new ImageIcon(
+                    "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
+            Image livroImagem = livroIcone.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+            livroIcone = new ImageIcon(livroImagem);
+            JLabel iconeLivro = new JLabel(livroIcone);
+            iconeLivro.setHorizontalAlignment(SwingConstants.CENTER);
+
             gbc.gridx = 0;
             gbc.gridy = 0;
+            gbc.anchor = GridBagConstraints.CENTER;
+            add(iconeLivro, gbc);
+
+            // gbc.gridx = 0;
+            // gbc.gridy = 1;
+            // gbc.anchor = GridBagConstraints.CENTER;
+            // gbc.fill = GridBagConstraints.HORIZONTAL;
+            // add(textoJEP, gbc);
+
+            // Adicionando campos de login abaixo do texto
+            gbc.gridx = 0;
+            gbc.gridy = 2;
             gbc.anchor = GridBagConstraints.WEST;
             add(new JLabel("N processo: "), gbc);
 
             gbc.gridx = 0;
-            gbc.gridy = 1;
+            gbc.gridy = 3;
             gbc.fill = GridBagConstraints.HORIZONTAL;
             add(numberJTF = new JTextField(20), gbc);
 
             gbc.gridx = 0;
-            gbc.gridy = 2;
+            gbc.gridy = 4;
             gbc.fill = GridBagConstraints.NONE;
             gbc.anchor = GridBagConstraints.WEST;
             add(new JLabel("Password: "), gbc);
 
             gbc.gridx = 0;
-            gbc.gridy = 3;
+            gbc.gridy = 5;
             gbc.fill = GridBagConstraints.HORIZONTAL;
             add(passwordJPF = new JPasswordField(20), gbc);
 
@@ -67,13 +90,16 @@ public class LoginVisao extends JFrame {
             passwordJPF.addKeyListener(new KeyAdapter() {
                 public void keyPressed(KeyEvent e) {
                     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                        String user = centro.getNumber();
-                        dispose();
-                        new MenuPrincipal(user);
+                        String user = getNumber();
+                        if (loginValid()) {
+                            dispose();
+                            new MenuPrincipal(user);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Número ou senha incorretos!");
+                        }
                     }
                 }
             });
-
         }
 
         public String getNumber() {
@@ -94,8 +120,13 @@ public class LoginVisao extends JFrame {
 
         public PainelSul() {
             setLayout(new FlowLayout(FlowLayout.CENTER));
-            add(entrarJB = new JButton("Entrar"));
-            entrarJB.addActionListener(this);
+            setBackground(Color.WHITE);
+            add(entrarJB = new JButton("  Entrar"));
+            ImageIcon entrarIcon = new ImageIcon(
+                    "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\enter.png");
+            Image entrarImagem = entrarIcon.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH); 
+            entrarIcon = new ImageIcon(entrarImagem);
+            entrarJB.setIcon(entrarIcon);
         }
 
         public void actionPerformed(ActionEvent evt) {

@@ -29,6 +29,9 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         setJMenuBar(menuBar);
 
         setTitle("Menu principal - " + user);
+        ImageIcon appIcone = new ImageIcon(
+                "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
+        setIconImage(appIcone.getImage());
         setSize(600, 400);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -65,30 +68,30 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         // Opções do menu Ficheiros
 
-        ficheiroMenu.add(novoLivroItem = new JMenuItem("Novo Livro"));
+        ficheiroMenu.add(novoLivroItem = new JMenuItem("Novo livro"));
         novoLivroItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK));
-        ficheiroMenu.add(editarLivroItem = new JMenuItem("Editar Livro"));
-        ficheiroMenu.add(eliminarLivroItem = new JMenuItem("Eliminar Livro"));
+        ficheiroMenu.add(editarLivroItem = new JMenuItem("Editar livro"));
+        ficheiroMenu.add(eliminarLivroItem = new JMenuItem("Eliminar livro"));
         ficheiroMenu.addSeparator();
         ficheiroMenu.add(sair = new JMenuItem("Sair"));
         sair.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
 
         // Opções do menu Operacoes
 
-        operacoesMenu.add(novoClienteItem = new JMenuItem("Novo Cliente"));
-        operacoesMenu.add(editarClienteItem = new JMenuItem("Editar Cliente"));
-        operacoesMenu.add(eliminarClienteItem = new JMenuItem("Eliminar Cliente"));
+        operacoesMenu.add(novoClienteItem = new JMenuItem("Novo cliente"));
+        operacoesMenu.add(editarClienteItem = new JMenuItem("Editar cliente"));
+        operacoesMenu.add(eliminarClienteItem = new JMenuItem("Eliminar cliente"));
         operacoesMenu.addSeparator();
-        operacoesMenu.add(novaVendaItem = new JMenuItem("Nova Venda"));
-        operacoesMenu.add(editarVendaItem = new JMenuItem("Editar Venda"));
-        operacoesMenu.add(eliminarVendaItem = new JMenuItem("Eliminar Venda"));
+        operacoesMenu.add(novaVendaItem = new JMenuItem("Nova venda"));
+        operacoesMenu.add(editarVendaItem = new JMenuItem("Editar venda"));
+        operacoesMenu.add(eliminarVendaItem = new JMenuItem("Eliminar venda"));
 
         // Opções do menu Listagens
         listagemMenu.add(listarLivroItem = new JMenuItem("Listar livros"));
         listagemMenu.addSeparator();
         listagemMenu.add(listarClienteItem = new JMenuItem("Listar clientes"));
         listagemMenu.addSeparator();
-        listagemMenu.add(listarVendaItem = new JMenuItem("Listar Vendas"));
+        listagemMenu.add(listarVendaItem = new JMenuItem("Listar vendas"));
 
         // Opções do menu Pesquisas
         pesquisaMenu.add(pesquisarLivroItem = new JMenuItem("Pesquisar livro"));
@@ -98,7 +101,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         tabelasMenu.add(generoLivroItem = new JMenuItem("Genero do livro"));
         tabelasMenu.add(formaDePagamentoItem = new JMenuItem("Forma de pagamento"));
-        tabelasMenu.add(estadoDoLivroItem = new JMenuItem("Estado do Livro"));
+        tabelasMenu.add(estadoDoLivroItem = new JMenuItem("Estado do livro"));
         tabelasMenu.addSeparator();
         tabelasMenu.add(provinciaMoradaItem = new JMenuItem("Provincia"));
         tabelasMenu.add(municipioMoradaItem = new JMenuItem("Municipio"));

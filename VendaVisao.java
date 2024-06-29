@@ -38,6 +38,9 @@ public class VendaVisao extends JFrame {
 			getContentPane().add(centro = new PainelCentro(modelo), BorderLayout.CENTER);
 		}
 		setTitle("Nova venda");
+		ImageIcon appIcone = new ImageIcon(
+			"C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
+	setIconImage(appIcone.getImage());
 		defineTheme();
 		pack();
 		// setSize(600, 400);

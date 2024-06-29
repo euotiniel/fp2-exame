@@ -31,6 +31,9 @@ public class ClienteVisao extends JFrame {
 		// getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
 		getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
 		setTitle("Cadastrar novo Cliente");
+		        ImageIcon appIcone = new ImageIcon(
+                "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
+        setIconImage(appIcone.getImage());
 		pack();
 		// setSize(600, 400);
 		setLocationRelativeTo(null);

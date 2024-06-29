@@ -21,7 +21,8 @@ public class ApresentacaoVisao extends JFrame {
 
         getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
         getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
-        ImageIcon appIcone = new ImageIcon("C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
+        ImageIcon appIcone = new ImageIcon(
+                "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
         setIconImage(appIcone.getImage());
         setTitle("Seja bem-vindo");
         // pack();
@@ -84,8 +85,20 @@ public class ApresentacaoVisao extends JFrame {
 
             JPanel buttonPanel = new JPanel();
             buttonPanel.setBackground(Color.WHITE);
-            entrarJB = new JButton("Entrar");
-            sairJB = new JButton("Sair");
+            entrarJB = new JButton("   Entrar");
+            ImageIcon entrarIcon = new ImageIcon(
+                    "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\enter.png");
+            Image entrarImagem = entrarIcon.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
+            entrarIcon = new ImageIcon(entrarImagem);
+            entrarJB.setIcon(entrarIcon);
+
+            sairJB = new JButton("   Sair");
+            ImageIcon sairIcon = new ImageIcon(
+                    "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\logout.png");
+            Image sairImagem = sairIcon.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
+            sairIcon = new ImageIcon(sairImagem);
+            sairJB.setIcon(sairIcon);
+
             activarBotao(false);
             entrarJB.addActionListener(this);
             sairJB.addActionListener(this);

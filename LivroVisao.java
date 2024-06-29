@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import SwingComponents.*;
+import SwingComponentsSrc.UInterfaceBox;
 import Calendario.*;
 import javax.swing.UIManager.*;
 
@@ -31,7 +32,10 @@ public class LivroVisao extends JFrame {
 			getContentPane().add(centro = new PainelCentro(modelo), BorderLayout.CENTER);
 		}
 		setTitle("Cadastro de Novo Livro");
-		defineTheme();
+		        ImageIcon appIcone = new ImageIcon(
+                "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
+        setIconImage(appIcone.getImage());
+		// defineTheme();
 		pack();
 		// setSize(600, 400);
 		setLocationRelativeTo(null);
@@ -210,7 +214,11 @@ public class LivroVisao extends JFrame {
 
 		public PainelSul() {
 			add(cadastrarJB = new JButton("Cadastrar livro"));
-
+ImageIcon createIcon = new ImageIcon(
+                    "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\enter.png");
+            Image createImagem = createIcon.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH); 
+            createIcon = new ImageIcon(createImagem);
+            cadastrarJB.setIcon(createIcon);
 			cadastrarJB.addActionListener(this);
 		}
 
