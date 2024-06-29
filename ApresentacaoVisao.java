@@ -21,53 +21,77 @@ public class ApresentacaoVisao extends JFrame {
 
         getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
         getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
-
+        ImageIcon appIcone = new ImageIcon("C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
+        setIconImage(appIcone.getImage());
         setTitle("Seja bem-vindo");
         // pack();
-        setSize(460, 500);
+        setSize(460, 450);
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
-    class PainelCentro extends JPanel implements ActionListener {
+    class PainelCentro extends JPanel {
         JTextArea textoJT;
-        JCheckBox concordarJCB;
 
         public PainelCentro() {
-            setLayout(new GridLayout(2, 1));
-            add(textoJT = new JTextArea(50, 50));
-            textoJT.setFocusable(false);
-            textoJT.setText("\n" +
-                    "Bem vindo ao Sistema de Gestao de Livraria\n\n" +
-                    "O Sistema de Gestão de Livraria é uma aplicação desenvolvida para gerenciar\nde forma eficiente as operações de uma livraria, abrangendo a administração\nde livros, vendas e clientes. Este sistema foi projetado para facilitar o controle\nde estoque, as venda e manter registros dos clientes.\n" + 
-                    "\n" + 
-                    "Funcionalidades\n\n" +
-                    "- Cadastro, atualização e exclusão de livros;\n- Cadastro, atualização e exclusão de clientes\n- Cadastro, atualização e exclusão de vendas\n");
-            
-            add(concordarJCB = new JCheckBox("Concordar com os termos e condicoes"));
-            concordarJCB.addActionListener(this);
-        }
+            setLayout(new BorderLayout());
 
-        public void actionPerformed(ActionEvent evt) {
-            if (evt.getSource() == concordarJCB) {
-                if (concordarJCB.isSelected()) {
-                    sul.activarBotao(true);
-                } else {
-                    sul.activarBotao(false);
-                }
-            }
+            setBackground(Color.WHITE);
+
+            ImageIcon livroIcone = new ImageIcon(
+                    "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
+            Image livroImagem = livroIcone.getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH);
+            livroIcone = new ImageIcon(livroImagem);
+            JLabel iconeLivro = new JLabel(livroIcone);
+            iconeLivro.setHorizontalAlignment(SwingConstants.CENTER);
+            iconeLivro.setBorder(BorderFactory.createEmptyBorder(30, 0, 10, 0));
+            add(iconeLivro, BorderLayout.NORTH);
+
+            JEditorPane textoJEP = new JEditorPane("text/html",
+                    "<html><div style='text-align: center;font-family: Arial;'>" +
+                            "<p style='font-size: 12px; font-weight: bold;'>Bem-vindo ao Sistema de Gestão de Livraria<p>"
+                            +
+                            "O Sistema de Gestão de Livraria é uma aplicação desenvolvida para gerenciar de forma eficiente as operações de uma livraria, abrangendo a administração de livros, vendas e clientes. Este sistema foi projetado para facilitar o controle de estoque, as vendas e manter registros.<br><br>"
+                            +
+                            "</div></html>");
+            textoJEP.setFocusable(false);
+
+            JPanel centralPanel = new JPanel(new BorderLayout());
+            centralPanel.add(textoJEP, BorderLayout.CENTER);
+            centralPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+            add(centralPanel, BorderLayout.CENTER);
+            centralPanel.setBackground(Color.WHITE);
         }
     }
 
     class PainelSul extends JPanel implements ActionListener {
         private JButton entrarJB, sairJB;
+        private JCheckBox concordarJCB;
 
         public PainelSul() {
-            add(entrarJB = new JButton("Entrar"));
-            add(sairJB = new JButton("Sair"));
+            setLayout(new BorderLayout());
+
+            setBackground(Color.WHITE);
+
+            JPanel checkBoxPanel = new JPanel();
+            checkBoxPanel.setBackground(Color.WHITE);
+
+            add(concordarJCB = new JCheckBox("Concordar com os termos e condicoes"));
+            concordarJCB.addActionListener(this);
+            checkBoxPanel.add(concordarJCB);
+            add(checkBoxPanel, BorderLayout.NORTH);
+
+            JPanel buttonPanel = new JPanel();
+            buttonPanel.setBackground(Color.WHITE);
+            entrarJB = new JButton("Entrar");
+            sairJB = new JButton("Sair");
             activarBotao(false);
             entrarJB.addActionListener(this);
             sairJB.addActionListener(this);
+            buttonPanel.add(entrarJB);
+            buttonPanel.add(sairJB);
+            add(buttonPanel, BorderLayout.CENTER);
         }
 
         public void activarBotao(boolean status) {
@@ -75,10 +99,18 @@ public class ApresentacaoVisao extends JFrame {
         }
 
         public void actionPerformed(ActionEvent evt) {
-            if (evt.getSource() == entrarJB) {
+            Object source = evt.getSource();
+
+            if (source == concordarJCB) {
+                if (concordarJCB.isSelected()) {
+                    activarBotao(true);
+                } else {
+                    activarBotao(false);
+                }
+            } else if (source == entrarJB) {
                 dispose();
                 new LoginVisao();
-            } else {
+            } else if (source == sairJB) {
                 dispose();
             }
         }

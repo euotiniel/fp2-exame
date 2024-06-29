@@ -19,7 +19,9 @@ public class LoginVisao extends JFrame {
 
         getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
         getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
-
+        ImageIcon appIcone = new ImageIcon(
+                "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
+        setIconImage(appIcone.getImage());
         setTitle("Entrar");
         setSize(400, 300);
         setLocationRelativeTo(null);
@@ -62,15 +64,13 @@ public class LoginVisao extends JFrame {
             // Definir caracter de ocultar senha
             passwordJPF.setEchoChar('o');
 
-            // Adicionar KeyListener para o campo de senha
             passwordJPF.addKeyListener(new KeyAdapter() {
-                @Override
                 public void keyPressed(KeyEvent e) {
-                        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                            String user = centro.getNumber();
-                            dispose();
-                            new MenuPrincipal(user);
-                        }
+                    if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                        String user = centro.getNumber();
+                        dispose();
+                        new MenuPrincipal(user);
+                    }
                 }
             });
 
