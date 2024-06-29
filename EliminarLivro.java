@@ -12,12 +12,15 @@ import java.awt.event.*;
 import SwingComponents.*;
 import Calendario.*;
 
-public class EliminarLivro extends JFrame{
+public class EliminarLivro extends JFrame {
     PainelCentro centro;
     PainelSul sul;
-     public EliminarLivro () {
-        super("Pesquisa para eliminar livro");
 
+    public EliminarLivro() {
+        super("Pesquisa para eliminar livro");
+        ImageIcon appIcone = new ImageIcon(
+                "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
+        setIconImage(appIcone.getImage());
         getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
         getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
 
@@ -25,18 +28,18 @@ public class EliminarLivro extends JFrame{
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
-     }
+    }
 
-     class PainelCentro extends JPanel implements ActionListener {
+    class PainelCentro extends JPanel implements ActionListener {
 
-     JComboBox tituloJCB, generoJCB;
+        JComboBox tituloJCB, generoJCB;
         JTextField autorJTF;
         JRadioButton searchTitulo, searchAutor, searchGender;
         JViewport searchVoid;
         ButtonGroup group;
 
         public PainelCentro() {
-            setLayout(new GridLayout(6,2));
+            setLayout(new GridLayout(6, 2));
             group = new ButtonGroup();
             add(searchTitulo = new JRadioButton("Título", true));
             add(searchAutor = new JRadioButton("Autor"));
@@ -47,16 +50,16 @@ public class EliminarLivro extends JFrame{
             group.add(searchAutor);
             group.add(searchGender);
 
-            add(new JLabel("Escolha o titulo do livro"));
+            add(new JLabel("Escolha o titulo do livro: "));
             add(tituloJCB = new JComboBox(LivroFile.getAllNames()));
 
-            add(new JLabel("Escolha o genero do livro"));
-            add(generoJCB = new JComboBox(LivroFile.getAllGenders()));
-            generoJCB.setEnabled(false);
-
-            add(new JLabel("Escolha o autor do livro"));
+            add(new JLabel("Escolha o autor do livro: "));
             add(autorJTF = new JTextField());
             autorJTF.setEnabled(false);
+
+            add(new JLabel("Escolha o genero do livro: "));
+            add(generoJCB = new JComboBox(LivroFile.getAllGenders()));
+            generoJCB.setEnabled(false);
 
             searchTitulo.addActionListener(this);
             searchAutor.addActionListener(this);
@@ -109,7 +112,7 @@ public class EliminarLivro extends JFrame{
             add(pesquisarJB = new JButton(" Eliminar livro"));
             ImageIcon deleteIcon = new ImageIcon(
                     "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\bin.png");
-            Image deleteImagem = deleteIcon.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH); 
+            Image deleteImagem = deleteIcon.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
             deleteIcon = new ImageIcon(deleteImagem);
             pesquisarJB.setIcon(deleteIcon);
             pesquisarJB.addActionListener(this);
@@ -127,13 +130,27 @@ public class EliminarLivro extends JFrame{
                         modelo.setStatus(false);
                         new LivroFile().eliminarDados(modelo);
                         dispose();
-                    } 
+                    }
                 } else if (centro.getTipoPesquisa() == 2) {
-                    LivroFile.pesquisarLivroPorAutor(centro.getAutorProcurado());
+                    modelo = LivroFile.getLivroPorAutor(centro.getAutorProcurado());
+                    JOptionPane.showMessageDialog(null, modelo.toString());
+                    int opcao = JOptionPane.showConfirmDialog(null, "Tem certeza de que pretende elimnar esses dados?");
+                    if (opcao == JOptionPane.YES_OPTION) {
+                        modelo.setStatus(false);
+                        new LivroFile().eliminarDados(modelo);
+                        dispose();
+                    }
                 } else if (centro.getTipoPesquisa() == 3) {
-                    LivroFile.pesquisarLivroPorGenero(centro.getGeneroProcurado());
+                    modelo = LivroFile.getLivroPorGenero(centro.getGeneroProcurado());
+                    JOptionPane.showMessageDialog(null, modelo.toString());
+                    int opcao = JOptionPane.showConfirmDialog(null, "Tem certeza de que pretende elimnar esses dados?");
+                    if (opcao == JOptionPane.YES_OPTION) {
+                        modelo.setStatus(false);
+                        new LivroFile().eliminarDados(modelo);
+                        dispose();
+                    }
                 }
             }
         }
-        }
+    }
 }

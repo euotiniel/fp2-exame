@@ -19,7 +19,9 @@ public class PesquisarLivro extends JFrame {
 
     public PesquisarLivro() {
         super("Pesquisar livro");
-
+        ImageIcon appIcone = new ImageIcon(
+            "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
+    setIconImage(appIcone.getImage());
         getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
         getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
 

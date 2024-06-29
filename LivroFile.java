@@ -121,6 +121,48 @@ public class LivroFile extends ObjectsFile {
 
         return modelo;
     }
+    
+    public  static LivroModelo getLivroPorAutor(String autorProcurado) {
+        LivroFile ficheiro = new LivroFile();
+        LivroModelo modelo = new LivroModelo();
+
+        try {
+            ficheiro.stream.seek(4);
+            for (int i = 0; i < ficheiro.getNregistos(); ++i){
+                
+                modelo.read(ficheiro.stream);
+
+                if (modelo.getAutor().equalsIgnoreCase(autorProcurado) && modelo.getStatus() == true) {
+                    return modelo;
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return modelo;
+    }
+    
+    public  static LivroModelo getLivroPorGenero(String generoProcurado) {
+        LivroFile ficheiro = new LivroFile();
+        LivroModelo modelo = new LivroModelo();
+
+        try {
+            ficheiro.stream.seek(4);
+            for (int i = 0; i < ficheiro.getNregistos(); ++i){
+                
+                modelo.read(ficheiro.stream);
+
+                if (modelo.getGenero().equalsIgnoreCase(generoProcurado) && modelo.getStatus() == true) {
+                    return modelo;
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return modelo;
+    }
 
     public  static void pesquisarLivroPorTitulo(String tituloProcurado) {
         LivroFile ficheiro = new LivroFile();

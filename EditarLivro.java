@@ -17,7 +17,9 @@ public class EditarLivro extends JFrame{
     PainelSul sul;
      public EditarLivro () {
         super("Pesquisa para editar livro");
-
+        ImageIcon appIcone = new ImageIcon(
+                "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
+        setIconImage(appIcone.getImage());
         getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
         getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
 
@@ -47,16 +49,16 @@ public class EditarLivro extends JFrame{
             group.add(searchAutor);
             group.add(searchGender);
 
-            add(new JLabel("Escolha o titulo do livro"));
+            add(new JLabel("Escolha o titulo do livro: "));
             add(tituloJCB = new JComboBox(LivroFile.getAllNames()));
 
-            add(new JLabel("Escolha o genero do livro"));
-            add(generoJCB = new JComboBox(LivroFile.getAllGenders()));
-            generoJCB.setEnabled(false);
-
-            add(new JLabel("Escolha o autor do livro"));
+            add(new JLabel("Escolha o autor do livro: "));
             add(autorJTF = new JTextField());
             autorJTF.setEnabled(false);
+
+            add(new JLabel("Escolha o genero do livro: "));
+            add(generoJCB = new JComboBox(LivroFile.getAllGenders()));
+            generoJCB.setEnabled(false);
 
             searchTitulo.addActionListener(this);
             searchAutor.addActionListener(this);
@@ -123,9 +125,11 @@ public class EditarLivro extends JFrame{
                     modelo = LivroFile.getLivroPorTitulo(centro.getTituloProcurado());
                     new LivroVisao(true, modelo);
                 } else if (centro.getTipoPesquisa() == 2) {
-                    LivroFile.pesquisarLivroPorAutor(centro.getAutorProcurado());
+                    modelo = LivroFile.getLivroPorAutor(centro.getAutorProcurado());
+                    new LivroVisao(true, modelo);
                 } else if (centro.getTipoPesquisa() == 3) {
-                    LivroFile.pesquisarLivroPorGenero(centro.getGeneroProcurado());
+                    modelo = LivroFile.getLivroPorGenero(centro.getGeneroProcurado());
+                    new LivroVisao(true, modelo);
                 }
             }
         }
