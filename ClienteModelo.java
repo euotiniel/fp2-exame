@@ -117,8 +117,8 @@ public class ClienteModelo implements RegistGeneric {
 
         str += "id: " + getId() + "\n";
         str += "Nome: " + getNome() + "\n";
-        str += "Email: " + getTelefone() + "\n";
-        str += "Telefone: " + getEmail() + "\n";
+        str += "Email: " + getEmail() + "\n";
+        str += "Telefone: " + getTelefone() + "\n";
         str += "Provincia: " + getProvincia() + "\n";
         str += "Municipio: " + getMunicipio() + "\n";
         str += "Comuna: " + getComuna() + "\n";

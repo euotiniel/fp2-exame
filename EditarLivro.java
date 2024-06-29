@@ -23,8 +23,8 @@ public class EditarLivro extends JFrame{
         getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
         getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
 
-        // setSize(400, 300);
-        pack();
+        setSize(300, 200);
+        // pack();
         setLocationRelativeTo(null);
         setVisible(true);
      }

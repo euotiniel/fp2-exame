@@ -21,9 +21,10 @@ public class EliminarCliente extends JFrame {
 
         getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
         getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
-
-        // setSize(400, 300);
-        pack();
+        ImageIcon appIcone = new ImageIcon(
+            "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
+    setIconImage(appIcone.getImage());
+        setSize(300, 200);
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -84,7 +85,12 @@ public class EliminarCliente extends JFrame {
         JButton pesquisarJB;
 
         public PainelSul() {
-            add(pesquisarJB = new JButton("Eliminar cliente"));
+            add(pesquisarJB = new JButton(" Eliminar cliente"));
+            ImageIcon deleteIcon = new ImageIcon(
+                    "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\bin.png");
+            Image deleteImagem = deleteIcon.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
+            deleteIcon = new ImageIcon(deleteImagem);
+            pesquisarJB.setIcon(deleteIcon);
             pesquisarJB.addActionListener(this);
         }
 

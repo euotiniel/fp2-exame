@@ -26,7 +26,7 @@ public class ApresentacaoVisao extends JFrame {
         setIconImage(appIcone.getImage());
         setTitle("Seja bem-vindo");
         // pack();
-        setSize(460, 450);
+        setSize(460, 430);
         setLocationRelativeTo(null);
         setVisible(true);
     }

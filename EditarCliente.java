@@ -18,12 +18,14 @@ public class EditarCliente extends JFrame {
 
     public EditarCliente() {
         super("Pesquisa para editar cliente");
-
+        ImageIcon appIcone = new ImageIcon(
+                "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
+        setIconImage(appIcone.getImage());
         getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
         getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
 
-        // setSize(400, 300);
-        pack();
+        setSize(300, 200);
+        // pack();
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -84,7 +86,12 @@ public class EditarCliente extends JFrame {
         JButton pesquisarJB;
 
         public PainelSul() {
-            add(pesquisarJB = new JButton("Pesquisar cliente"));
+            add(pesquisarJB = new JButton(" Editar cliente"));
+            ImageIcon editIcon = new ImageIcon(
+                    "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\edit.png");
+            Image editImagem = editIcon.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH); 
+            editIcon = new ImageIcon(editImagem);
+            pesquisarJB.setIcon(editIcon);
             pesquisarJB.addActionListener(this);
         }
 
@@ -96,7 +103,8 @@ public class EditarCliente extends JFrame {
                     new ClienteVisao(true, modelo);
 
                 } else if (centro.getTipoPesquisa() == 2) {
-                    ClienteFile.pesquisarClientePorTelefone(centro.getTelefoneProcurado());
+                    modelo = ClienteFile.getClientePorTelefone(centro.getTelefoneProcurado());
+                    new ClienteVisao(true, modelo);
                 }
             }
         }

@@ -48,7 +48,7 @@ public class ClienteVisao extends JFrame {
 		private ClienteFile clienteFile;
 
 		public PainelCentro() {
-			setLayout(new GridLayout(7, 4));
+			setLayout(new GridLayout(4, 4, 5, 10));
 
 			clienteFile = new ClienteFile();
 
@@ -68,10 +68,10 @@ public class ClienteVisao extends JFrame {
 			// Linha 2
 
 			add(new Label("Telefone"));
-			add(emailJTF = new JTextField());
+			add(telefoneJTF = new JTextField());
 
 			add(new Label("Email"));
-			add(telefoneJTF = new JTextField());
+			add(emailJTF = new JTextField());
 
 			// Linha 3
 			add( new JLabel("Provincia"));
@@ -88,7 +88,7 @@ public class ClienteVisao extends JFrame {
 		}
 
 		public PainelCentro(ClienteModelo modelo) {
-			setLayout(new GridLayout(7, 4));
+			setLayout(new GridLayout(4, 4, 5, 10));
 
 			clienteFile = new ClienteFile();
 
@@ -107,12 +107,12 @@ public class ClienteVisao extends JFrame {
 			// Linha 2
 
 			add(new Label("Telefone"));
-			add(emailJTF = new JTextField());
-			emailJTF.setText(modelo.getEmail());
-			
-			add(new Label("Email"));
 			add(telefoneJTF = new JTextField());
 			telefoneJTF.setText(modelo.getTelefone());
+			
+			add(new Label("Email"));
+			add(emailJTF = new JTextField());
+			emailJTF.setText(modelo.getEmail());
 
 			// Linha 3
 
@@ -211,12 +211,37 @@ public class ClienteVisao extends JFrame {
 		JButton cadastrarJB;
 
 		public PainelSul() {
-			add(cadastrarJB = new JButton("Cadastrar cliente"));
-
+			add(cadastrarJB = new JButton(" Cadastrar cliente"));
+			ImageIcon createIcon = new ImageIcon(
+				"C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\add.png");
+		Image createImagem = createIcon.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
+		createIcon = new ImageIcon(createImagem);
+		cadastrarJB.setIcon(createIcon);
 			cadastrarJB.addActionListener(this);
 		}
 
 		public void actionPerformed(ActionEvent evt) {
+
+			if (centro.getNome().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "O campo 'Nome do cliente' não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			if (centro.getTelefone().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "O campo 'Telefone do cliente' não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			if (centro.getEmail().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "O campo 'Email do cliente' não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
+			if (centro.getProvincia().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "O campo 'Provincia' não pode estar vazio.", "Erro", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
 			if (evt.getSource() == cadastrarJB) {
 				if (editar) {
 					centro.editar();
