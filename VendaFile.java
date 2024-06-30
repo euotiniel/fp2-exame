@@ -71,7 +71,7 @@ public class VendaFile extends ObjectsFile {
             ficheiro.getStream().seek(4); // Skip the first 4 bytes
             for (int i = 0; i < ficheiro.getNregistos(); ++i) {
                 modelo.read(ficheiro.getStream());
-                if (modelo.getStatus() == true) {
+                if (modelo.getStatus() == true && modelo.getQuantidadeEstoque() > 0) {
                     titles.add(modelo.getTitulo().trim());
                 }
             }

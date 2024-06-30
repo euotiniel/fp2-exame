@@ -36,13 +36,13 @@ public class LivroFile extends ObjectsFile {
     public  static void listarLivros() {
         LivroFile ficheiro = new LivroFile();
         LivroModelo modelo = new LivroModelo();
-        String output = "Listagem dos dados do Ficheiro\n\n"; 
+        String output = "Listagem dos livros\n\n"; 
         try {
             ficheiro.stream.seek(4);
             for (int i = 0; i < ficheiro.getNregistos(); ++i){
                 modelo.read(ficheiro.stream);
 
-                if (modelo.getStatus() == true) {
+                if (modelo.getStatus() == true && modelo.getQuantidadeEstoque() > 0) {
                     output += "--------------------------------------------\n";
                     output += modelo.toString() + "\n";
                 }
@@ -68,7 +68,7 @@ public class LivroFile extends ObjectsFile {
             for (int i = 0; i < ficheiro.getNregistos(); ++i){
                 modelo.read(ficheiro.stream);
 
-                if (modelo.getStatus() == true) {
+                if (modelo.getStatus() == true && modelo.getQuantidadeEstoque() > 0) {
                     vector.add(modelo.getTitulo());
                 }
             }
@@ -111,7 +111,7 @@ public class LivroFile extends ObjectsFile {
                 
                 modelo.read(ficheiro.stream);
 
-                if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado) && modelo.getStatus() == true) {
+                if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado) && modelo.getStatus() == true && modelo.getQuantidadeEstoque() > 0) {
                     return modelo;
                 }
             }
@@ -132,7 +132,7 @@ public class LivroFile extends ObjectsFile {
                 
                 modelo.read(ficheiro.stream);
 
-                if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado) && modelo.getStatus() == true) {
+                if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado) && modelo.getStatus() == true && modelo.getQuantidadeEstoque() > 0) {
                     return modelo.getQuantidadeEstoque();
                 }
             }
@@ -153,7 +153,7 @@ public class LivroFile extends ObjectsFile {
                 
                 modelo.read(ficheiro.stream);
 
-                if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado) && modelo.getStatus() == true) {
+                if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado) && modelo.getStatus() == true && modelo.getQuantidadeEstoque() > 0) {
                     double money = myQtt * modelo.getPreco();
                     return money;
                 }
@@ -175,7 +175,7 @@ public class LivroFile extends ObjectsFile {
                 
                 modelo.read(ficheiro.stream);
 
-                if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado) && modelo.getStatus() == true) {
+                if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado) && modelo.getStatus() == true && modelo.getQuantidadeEstoque() > 0) {
                     int newStock = modelo.getQuantidadeEstoque() - myQtt;
                     modelo.setQuantidadeEstoque(newStock);
                     ficheiro.stream.seek(4);
@@ -201,7 +201,7 @@ public class LivroFile extends ObjectsFile {
                 
                 modelo.read(ficheiro.stream);
 
-                if (modelo.getAutor().equalsIgnoreCase(autorProcurado) && modelo.getStatus() == true) {
+                if (modelo.getAutor().equalsIgnoreCase(autorProcurado) && modelo.getStatus() == true && modelo.getQuantidadeEstoque() > 0) {
                     return modelo;
                 }
             }
@@ -222,7 +222,7 @@ public class LivroFile extends ObjectsFile {
                 
                 modelo.read(ficheiro.stream);
 
-                if (modelo.getGenero().equalsIgnoreCase(generoProcurado) && modelo.getStatus() == true) {
+                if (modelo.getGenero().equalsIgnoreCase(generoProcurado) && modelo.getStatus() == true && modelo.getQuantidadeEstoque() > 0) {
                     return modelo;
                 }
             }
@@ -243,7 +243,7 @@ public class LivroFile extends ObjectsFile {
                 
                 modelo.read(ficheiro.stream);
 
-                if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado) && modelo.getStatus() == true) {
+                if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado) && modelo.getStatus() == true && modelo.getQuantidadeEstoque() > 0) {
                     JOptionPane.showMessageDialog(null, modelo.toString());
                     break;
                 }
@@ -264,7 +264,7 @@ public class LivroFile extends ObjectsFile {
                 
                 modelo.read(ficheiro.stream);
 
-                if (modelo.getAutor().equalsIgnoreCase(getAutorProcurado) && modelo.getStatus() == true) {
+                if (modelo.getAutor().equalsIgnoreCase(getAutorProcurado) && modelo.getStatus() == true && modelo.getQuantidadeEstoque() > 0) {
                     JOptionPane.showMessageDialog(null, modelo.toString());
                     return;
                 } 
@@ -287,7 +287,7 @@ public class LivroFile extends ObjectsFile {
                 
                 modelo.read(ficheiro.stream);
 
-                if (modelo.getGenero().equalsIgnoreCase(generoProcurado) && modelo.getStatus() == true) {
+                if (modelo.getGenero().equalsIgnoreCase(generoProcurado) && modelo.getStatus() == true && modelo.getQuantidadeEstoque() > 0) {
                     JOptionPane.showMessageDialog(null, modelo.toString());
                     break;
                 }

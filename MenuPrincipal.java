@@ -100,7 +100,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         // Opções do menu Tabelas
 
         tabelasMenu.add(generoLivroItem = new JMenuItem("Genero do livro"));
-        tabelasMenu.add(formaDePagamentoItem = new JMenuItem("Forma de pagamento"));
+        // tabelasMenu.add(formaDePagamentoItem = new JMenuItem("Forma de pagamento"));
         tabelasMenu.add(estadoDoLivroItem = new JMenuItem("Estado do livro"));
         tabelasMenu.addSeparator();
         tabelasMenu.add(provinciaMoradaItem = new JMenuItem("Provincia"));
@@ -132,7 +132,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         ajudaAutorItem.addActionListener(this);
         generoLivroItem.addActionListener(this);
-        formaDePagamentoItem.addActionListener(this);
+        // formaDePagamentoItem.addActionListener(this);
         estadoDoLivroItem.addActionListener(this);
         
         provinciaMoradaItem.addActionListener(this);
@@ -172,8 +172,8 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         if (evt.getSource() == generoLivroItem)
             Tabela2.editarNovosItems("Genero.tab", "Novo genero de livro");
 
-        if (evt.getSource() == formaDePagamentoItem)
-            Tabela2.editarNovosItems("FormasDePagamento.tab", "Nova forma de pagamento");
+        // if (evt.getSource() == formaDePagamentoItem)
+        //     Tabela2.editarNovosItems("FormasDePagamento.tab", "Nova forma de pagamento");
 
         if (evt.getSource() == estadoDoLivroItem)
             Tabela2.editarNovosItems("EstadoDoLivro.tab", "Novo estado do livro");

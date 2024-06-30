@@ -189,10 +189,12 @@ public class VendaVisao extends JFrame {
 			VendaModelo modelo = new VendaModelo(getId(), getLivro(), getCliente(), getQuantidade(), getValorTotal(),
 					getDataVenda(), true);
 
-			JOptionPane.showMessageDialog(null, modelo.toString());
+			int option = JOptionPane.showConfirmDialog(null, modelo.toString());
 
-			modelo.salvar();
-			LivroFile.updateStock(centro.getLivro(), centro.getQuantidade());
+			if (option == JOptionPane.YES_OPTION) {
+				modelo.salvar();
+				LivroFile.updateStock(centro.getLivro(), centro.getQuantidade());
+			}
 			dispose();
 		}
 
