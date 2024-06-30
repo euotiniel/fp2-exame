@@ -178,7 +178,10 @@ public class LivroFile extends ObjectsFile {
                 if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado) && modelo.getStatus() == true) {
                     int newStock = modelo.getQuantidadeEstoque() - myQtt;
                     modelo.setQuantidadeEstoque(newStock);
+                    ficheiro.stream.seek(4);
+                modelo.write(ficheiro.stream);
                     // return modelo.setQuantidadeEstoque();
+                    return newStock;
                 }
             }
         } catch (Exception ex) {

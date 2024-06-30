@@ -192,6 +192,7 @@ public class VendaVisao extends JFrame {
 			JOptionPane.showMessageDialog(null, modelo.toString());
 
 			modelo.salvar();
+			LivroFile.updateStock(centro.getLivro(), centro.getQuantidade());
 			dispose();
 		}
 
@@ -235,7 +236,7 @@ public class VendaVisao extends JFrame {
 			}
 
 			if (centro.getQuantidade() <= 0 || centro.getQuantidade() > LivroFile.getBookQuantity(centro.getLivro())) {
-				JOptionPane.showMessageDialog(null, "O campo 'Quantidade' não pode estar vazio e nem superior ou estoque existente.", "Erro",
+				JOptionPane.showMessageDialog(null, "O campo 'Quantidade' não pode estar vazio e nem superior ao estoque existente.", "Erro",
 						JOptionPane.ERROR_MESSAGE);
 				return;
 			}
