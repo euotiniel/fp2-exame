@@ -14,15 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VendaFile extends ObjectsFile {
-    
+
     public VendaFile() {
         super("VendaFile.dat", new VendaModelo());
     }
 
-    public void salvarDados (VendaModelo modelo) {
+    public void salvarDados(VendaModelo modelo) {
         try {
             // Colocar file pointer no final do ficheiro
-            stream.seek( stream.length());
+            stream.seek(stream.length());
 
             modelo.write(stream);
 
@@ -35,13 +35,13 @@ public class VendaFile extends ObjectsFile {
         }
     }
 
-    public  static void listarVendas() {
+    public static void listarVendas() {
         VendaFile ficheiro = new VendaFile();
         VendaModelo modelo = new VendaModelo();
-        String output = "Listagem das vendas\n\n"; 
+        String output = "Listagem das vendas\n\n";
         try {
             ficheiro.stream.seek(4);
-            for (int i = 0; i < ficheiro.getNregistos(); ++i){
+            for (int i = 0; i < ficheiro.getNregistos(); ++i) {
                 modelo.read(ficheiro.stream);
 
                 if (modelo.getStatus() == true) {
@@ -56,19 +56,19 @@ public class VendaFile extends ObjectsFile {
             JTextArea area = new JTextArea(40, 60);
             area.setText(output);
             area.setFocusable(false);
-            JOptionPane.showMessageDialog(null, new JScrollPane( area ));
+            JOptionPane.showMessageDialog(null, new JScrollPane(area));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
+
     }
 
- public static List<String> getBookTitles() {
+    public static List<String> getBookTitles() {
         List<String> titles = new ArrayList<>();
         LivroFile ficheiro = new LivroFile();
         LivroModelo modelo = new LivroModelo();
         try {
-            ficheiro.getStream().seek(4); // Skip the first 4 bytes
+            ficheiro.getStream().seek(4);
             for (int i = 0; i < ficheiro.getNregistos(); ++i) {
                 modelo.read(ficheiro.getStream());
                 if (modelo.getStatus() == true && modelo.getQuantidadeEstoque() > 0) {
@@ -81,12 +81,12 @@ public class VendaFile extends ObjectsFile {
         return titles;
     }
 
- public static List<String> getClientNames() {
+    public static List<String> getClientNames() {
         List<String> names = new ArrayList<>();
         ClienteFile ficheiro = new ClienteFile();
         ClienteModelo modelo = new ClienteModelo();
         try {
-            ficheiro.getStream().seek(4); // Skip the first 4 bytes
+            ficheiro.getStream().seek(4); 
             for (int i = 0; i < ficheiro.getNregistos(); ++i) {
                 modelo.read(ficheiro.getStream());
                 if (modelo.getStatus() == true) {
@@ -99,187 +99,193 @@ public class VendaFile extends ObjectsFile {
         return names;
     }
 
-
-
     // public static StringVector getAllNames() {
-    //     VendaFile ficheiro = new VendaFile();
-    //     VendaModelo modelo = new VendaModelo();
-    //     StringVector vector = new StringVector();
+    // VendaFile ficheiro = new VendaFile();
+    // VendaModelo modelo = new VendaModelo();
+    // StringVector vector = new StringVector();
 
-    //     try {
-    //         ficheiro.stream.seek(4);
-    //         for (int i = 0; i < ficheiro.getNregistos(); ++i){
-    //             modelo.read(ficheiro.stream);
+    // try {
+    // ficheiro.stream.seek(4);
+    // for (int i = 0; i < ficheiro.getNregistos(); ++i){
+    // modelo.read(ficheiro.stream);
 
-    //             if (modelo.getStatus() == true) {
-    //                 vector.add(modelo.getTitulo());
-    //             }
-    //         }
+    // if (modelo.getStatus() == true) {
+    // vector.add(modelo.getTitulo());
+    // }
+    // }
 
-    //         vector.sort();
-    //     } catch (Exception ex) {
-    //         ex.printStackTrace();
-    //     } 
+    // vector.sort();
+    // } catch (Exception ex) {
+    // ex.printStackTrace();
+    // }
 
-    //     return vector;
+    // return vector;
     // }
 
     // public static StringVector getAllGenders() {
-    //     VendaFile ficheiro = new VendaFile();
-    //     VendaModelo modelo = new VendaModelo();
-    //     StringVector vector = new StringVector();
+    // VendaFile ficheiro = new VendaFile();
+    // VendaModelo modelo = new VendaModelo();
+    // StringVector vector = new StringVector();
 
-    //     try {
-    //         ficheiro.stream.seek(4);
-    //         for (int i = 0; i < ficheiro.getNregistos(); ++i){
-    //             modelo.read(ficheiro.stream);
-    //             vector.add(modelo.getGenero());
-    //         }
-
-    //         vector.sort();
-    //     } catch (Exception ex) {
-    //         ex.printStackTrace();
-    //     } 
-
-    //     return vector;
+    // try {
+    // ficheiro.stream.seek(4);
+    // for (int i = 0; i < ficheiro.getNregistos(); ++i){
+    // modelo.read(ficheiro.stream);
+    // vector.add(modelo.getGenero());
     // }
 
-    // public  static VendaModelo getLivroPorTitulo(String tituloProcurado) {
-    //     VendaFile ficheiro = new VendaFile();
-    //     VendaModelo modelo = new VendaModelo();
-
-    //     try {
-    //         ficheiro.stream.seek(4);
-    //         for (int i = 0; i < ficheiro.getNregistos(); ++i){
-                
-    //             modelo.read(ficheiro.stream);
-
-    //             if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado) && modelo.getStatus() == true) {
-    //                 return modelo;
-    //             }
-    //         }
-    //     } catch (Exception ex) {
-    //         ex.printStackTrace();
-    //     }
-
-    //     return modelo;
+    // vector.sort();
+    // } catch (Exception ex) {
+    // ex.printStackTrace();
     // }
 
-    // public  static void pesquisarLivroPorTitulo(String tituloProcurado) {
-    //     VendaFile ficheiro = new VendaFile();
-    //     VendaModelo modelo = new VendaModelo();
-
-    //     try {
-    //         ficheiro.stream.seek(4);
-    //         for (int i = 0; i < ficheiro.getNregistos(); ++i){
-                
-    //             modelo.read(ficheiro.stream);
-
-    //             if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado) && modelo.getStatus() == true) {
-    //                 JOptionPane.showMessageDialog(null, modelo.toString());
-    //                 break;
-    //             }
-    //         }
-    //     } catch (Exception ex) {
-    //         ex.printStackTrace();
-    //     }
-        
+    // return vector;
     // }
 
-    // public  static void pesquisarLivroPorAutor(String getAutorProcurado) {
-    //     VendaFile ficheiro = new VendaFile();
-    //     VendaModelo modelo = new VendaModelo();
+    // public static VendaModelo getLivroPorTitulo(String tituloProcurado) {
+    // VendaFile ficheiro = new VendaFile();
+    // VendaModelo modelo = new VendaModelo();
 
-    //     try {
-    //         ficheiro.stream.seek(4);
-    //         for (int i = 0; i < ficheiro.getNregistos(); ++i){
-                
-    //             modelo.read(ficheiro.stream);
+    // try {
+    // ficheiro.stream.seek(4);
+    // for (int i = 0; i < ficheiro.getNregistos(); ++i){
 
-    //             if (modelo.getAutor().equalsIgnoreCase(getAutorProcurado) && modelo.getStatus() == true) {
-    //                 JOptionPane.showMessageDialog(null, modelo.toString());
-    //                 return;
-    //             } 
-    //         }
-    //         JOptionPane.showMessageDialog(null, "404, Autor não encontrado", "Not found", JOptionPane.ERROR_MESSAGE);
+    // modelo.read(ficheiro.stream);
 
-    //     } catch (Exception ex) {
-    //         ex.printStackTrace();
-    //     }
-        
+    // if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado) &&
+    // modelo.getStatus() == true) {
+    // return modelo;
+    // }
+    // }
+    // } catch (Exception ex) {
+    // ex.printStackTrace();
     // }
 
-    // public  static void pesquisarLivroPorGenero(String generoProcurado) {
-    //     VendaFile ficheiro = new VendaFile();
-    //     VendaModelo modelo = new VendaModelo();
-
-    //     try {
-    //         ficheiro.stream.seek(4);
-    //         for (int i = 0; i < ficheiro.getNregistos(); ++i){
-                
-    //             modelo.read(ficheiro.stream);
-
-    //             if (modelo.getGenero().equalsIgnoreCase(generoProcurado) && modelo.getStatus() == true) {
-    //                 JOptionPane.showMessageDialog(null, modelo.toString());
-    //                 break;
-    //             }
-    //         }
-    //     } catch (Exception ex) {
-    //         ex.printStackTrace();
-    //     }
-        
+    // return modelo;
     // }
 
-     public void alterarDados (VendaModelo modelo_novo) {
-         VendaModelo modelo_antigo = new VendaModelo();
+    public static List<String> PesquisarVendaPorNome(String livroProcurado) {
+        List<String> titles = new ArrayList<>();
+        VendaFile ficheiro = new VendaFile();
+        VendaModelo modelo = new VendaModelo();
+        try {
+            ficheiro.stream.seek(4);
+            for (int i = 0; i < ficheiro.getNregistos(); ++i) {
 
-         try  {
-             stream.seek(4);
+                modelo.read(ficheiro.stream);
 
-             for (int i = 0; i < getNregistos(); ++i) {
-                 modelo_antigo.read(stream);
+                if (modelo.getLivro().equalsIgnoreCase(livroProcurado) && modelo.getStatus() == true) {
+                    JOptionPane.showMessageDialog(null, modelo.toString());
+                    break;
+                }
+            }
 
-                 if (i == 0 && modelo_antigo.getId() == modelo_novo.getId()) {
-                     stream.seek(4);
-                     modelo_novo.write(stream);
-                     JOptionPane.showMessageDialog(null, "Dados editados com sucesso.");
-                     return;
-                 } else {
-                     if (modelo_antigo.getId() + 1 == modelo_novo.getId()) {
-                         modelo_novo.write(stream);
-                         return;
-                     }
-                 }
-             }
-         } catch (Exception ex) {
-             ex.printStackTrace();
-         }
-     }
+            JOptionPane.showMessageDialog(null, "Livro não encontrado", "Not found", JOptionPane.ERROR_MESSAGE);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return titles;
+    }
+
+    public static void PesquisarVendaPorCliente(String clienteProcurado) {
+        VendaFile ficheiro = new VendaFile();
+        VendaModelo modelo = new VendaModelo();
+
+        try {
+            ficheiro.stream.seek(4);
+            for (int i = 0; i < ficheiro.getNregistos(); ++i) {
+
+                modelo.read(ficheiro.stream);
+
+                if (modelo.getCliente().equalsIgnoreCase(clienteProcurado) && modelo.getStatus() == true) {
+                    JOptionPane.showMessageDialog(null, modelo.toString());
+                    return;
+                }
+            }
+            JOptionPane.showMessageDialog(null, "Cliente não encontrado", "Not found", JOptionPane.ERROR_MESSAGE);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+    public static void PesquisarVendaPorData(String dataProcurada) {
+        VendaFile ficheiro = new VendaFile();
+        VendaModelo modelo = new VendaModelo();
+
+        try {
+            ficheiro.stream.seek(4);
+            for (int i = 0; i < ficheiro.getNregistos(); ++i) {
+
+                modelo.read(ficheiro.stream);
+
+                if (modelo.getDataVenda().equalsIgnoreCase(dataProcurada) && modelo.getStatus() == true) {
+                    JOptionPane.showMessageDialog(null, modelo.toString());
+                    break;
+                }
+            }
+
+            JOptionPane.showMessageDialog(null, "Data não encontrado", "Not found", JOptionPane.ERROR_MESSAGE);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+    public void alterarDados(VendaModelo modelo_novo) {
+        VendaModelo modelo_antigo = new VendaModelo();
+
+        try {
+            stream.seek(4);
+
+            for (int i = 0; i < getNregistos(); ++i) {
+                modelo_antigo.read(stream);
+
+                if (i == 0 && modelo_antigo.getId() == modelo_novo.getId()) {
+                    stream.seek(4);
+                    modelo_novo.write(stream);
+                    JOptionPane.showMessageDialog(null, "Dados editados com sucesso.");
+                    return;
+                } else {
+                    if (modelo_antigo.getId() + 1 == modelo_novo.getId()) {
+                        modelo_novo.write(stream);
+                        return;
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 
     // public void eliminarDados (VendaModelo modelo_novo) {
-    //     VendaModelo modelo_antigo = new VendaModelo();
+    // VendaModelo modelo_antigo = new VendaModelo();
 
-    //     try  {
-    //         stream.seek(4);
+    // try {
+    // stream.seek(4);
 
-    //         for (int i = 0; i < getNregistos(); ++i) {
+    // for (int i = 0; i < getNregistos(); ++i) {
 
-    //             modelo_antigo.read(stream);
+    // modelo_antigo.read(stream);
 
-    //             if (i == 0 && modelo_antigo.getId() == modelo_novo.getId()) {
-    //                 stream.seek(4);
-    //                 modelo_novo.write(stream);
-    //                 JOptionPane.showMessageDialog(null, "Livro elimados com sucesso.");
-    //                 return;
-    //             } else {
-    //                 if (modelo_antigo.getId() + 1 == modelo_novo.getId()) {
-    //                     modelo_novo.write(stream);
-    //                     return;
-    //                 }
-    //             }
-    //         }
-    //     } catch (Exception ex) {
-    //         ex.printStackTrace();
-    //     }
+    // if (i == 0 && modelo_antigo.getId() == modelo_novo.getId()) {
+    // stream.seek(4);
+    // modelo_novo.write(stream);
+    // JOptionPane.showMessageDialog(null, "Livro elimados com sucesso.");
+    // return;
+    // } else {
+    // if (modelo_antigo.getId() + 1 == modelo_novo.getId()) {
+    // modelo_novo.write(stream);
+    // return;
+    // }
+    // }
+    // }
+    // } catch (Exception ex) {
+    // ex.printStackTrace();
+    // }
     // }
 }

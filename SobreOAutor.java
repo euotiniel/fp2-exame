@@ -2,59 +2,72 @@
 Tema: Gestão de uma Livraria
 Nome: Otoniel Emanuel
 Numero: 33039
-Ficheiro: LivroVisao.java
+Ficheiro: SobreOAutor.java
 Data: 28.05.2024
 --------------------------------------*/
 
 import javax.swing.*;
 import java.awt.*;
-import javax.swing.border.EmptyBorder;
+import java.awt.event.*;
+import SwingComponents.*;
+import Calendario.*;
 
 public class SobreOAutor extends JFrame {
+
+    private PainelCentro centro;
+
     public SobreOAutor() {
-        super("Sobre o Autor");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 540);
-        setLocationRelativeTo(null); // Centraliza a janela na tela
 
-        // Criar um painel principal com padding
-        JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());
-        panel.setBorder(new EmptyBorder(10, 10, 10, 10)); // Padding de 10 pixels ao redor
-
-        // Adicionar imagem redimensionada
-        JLabel imageLabel = new JLabel();
-        ImageIcon autorImage = new ImageIcon("C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\euotiniel.jpeg"); // Certifique-se de que o caminho da imagem está correto
-        Image image = autorImage.getImage(); // Transformar em objeto Image
-        Image resizedImage = image.getScaledInstance(150, 150, Image.SCALE_SMOOTH); // Redimensionar imagem
-        autorImage = new ImageIcon(resizedImage); // Transformar de volta em ImageIcon
-        imageLabel.setIcon(autorImage);
-        imageLabel.setHorizontalAlignment(JLabel.CENTER); // Centralizar a imagem no painel
-        imageLabel.setBorder(new EmptyBorder(10, 0, 10, 0)); // Padding acima e abaixo da imagem
-        panel.add(imageLabel, BorderLayout.NORTH);
-
-        // Adicionar informações do autor
-        JTextArea textArea = new JTextArea();
-        textArea.setText("Nome do Autor: Otoniel Emanuel\n\n" +
-                "Universidade: Universidade Católica de Angola (UCAN)\n\n" +
-                "Turma: A\n\n" +
-                "Ano: Primeiro ano\n\n" +
-                "Numero: 33039\n\n" +
-                "Atualmente é estudante de Eng. Informática e está trabalhando em projetos que envolvem interfaces gráficas e usabilidade.\n\n" +
-                "Email: otonielemanuel21@gmail.com\n" +
-                "Telefone: 929 392 38");
-        textArea.setEditable(false);
-        textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true);
-        textArea.setBorder(new EmptyBorder(10, 10, 10, 10)); // Padding ao redor do texto
-        JScrollPane scrollPane = new JScrollPane(textArea);
-
-        panel.add(scrollPane, BorderLayout.CENTER);
-
-        // Adicionar painel ao frame
-        add(panel);
-
-        // Tornar o frame visível
+        getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
+        ImageIcon appIcone = new ImageIcon(
+                "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
+        setIconImage(appIcone.getImage());
+        setTitle("Sobre o autor");
+        // pack();
+        setSize(460, 420);
+        setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    class PainelCentro extends JPanel {
+        JTextArea textoJT;
+
+        public PainelCentro() {
+            setLayout(new BorderLayout());
+
+            setBackground(Color.WHITE);
+
+            ImageIcon livroIcone = new ImageIcon(
+                    "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\euotiniel.png");
+            Image livroImagem = livroIcone.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+            livroIcone = new ImageIcon(livroImagem);
+            JLabel iconeLivro = new JLabel(livroIcone);
+            iconeLivro.setHorizontalAlignment(SwingConstants.CENTER);
+            iconeLivro.setBorder(BorderFactory.createEmptyBorder(30, 0, 10, 0));
+            add(iconeLivro, BorderLayout.NORTH);
+
+            JEditorPane textoJEP = new JEditorPane("text/html",
+                    "<html><div style='text-align: center; font-family: Arial;'>" +
+                            "<p style='font-size: 12px; font-weight: bold; margin-bottom: 10px'>Otoniel Kavungu Dos Santos Emanuel</p>"
+                            +
+                            "<p style='font-style: italic; font-weight: bold; margin-bottom: 10px'>Turma: A | 1º ano | 33039 | 929 392 384</p>"
+                            +
+                            "Desenvolvedor front-end, entusiasta de código aberto e escritor. Atualmente, estou cursando Engenharia Informática em Luanda na Universidade: Universidade Católica de Angola (UCAN) e dedico boa parte do meu tempo à minha paixão pela programação."
+                            +
+                            "</div></html>");
+            textoJEP.setFocusable(false);
+
+            JPanel centralPanel = new JPanel(new BorderLayout());
+            centralPanel.add(textoJEP, BorderLayout.CENTER);
+            centralPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+            add(centralPanel, BorderLayout.CENTER);
+            centralPanel.setBackground(Color.WHITE);
+        }
+    }
+
+    public static void main(String args[]) {
+        Vector_Tabelas.inic(); // cria a conexao do projecto com a API SWINGCOMPONENTS
+        new ApresentacaoVisao();
     }
 }

@@ -19,7 +19,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
     private JMenuItem novoLivroItem, editarLivroItem, eliminarLivroItem, sair;
     private JMenuItem novoClienteItem, editarClienteItem, eliminarClienteItem, novaVendaItem, editarVendaItem, eliminarVendaItem;
     private JMenuItem listarLivroItem, listarClienteItem, listarVendaItem;
-    private JMenuItem pesquisarLivroItem, pesquisarClienteItem;
+    private JMenuItem pesquisarLivroItem, pesquisarClienteItem, pesquisarVendaItem;
     private JMenuItem generoLivroItem, formaDePagamentoItem, estadoDoLivroItem, provinciaMoradaItem, municipioMoradaItem, comunaMoradaItem;;
     private JMenuItem ajudaAplicacaoItem, ajudaAutorItem;
     
@@ -95,7 +95,10 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         // Opções do menu Pesquisas
         pesquisaMenu.add(pesquisarLivroItem = new JMenuItem("Pesquisar livro"));
+        listagemMenu.addSeparator();
         pesquisaMenu.add(pesquisarClienteItem = new JMenuItem("Pesquisar cliente"));
+        listagemMenu.addSeparator();
+        pesquisaMenu.add(pesquisarVendaItem = new JMenuItem("Pesquisar venda"));
 
         // Opções do menu Tabelas
 
@@ -131,6 +134,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         listarVendaItem.addActionListener(this);
 
         ajudaAutorItem.addActionListener(this);
+        ajudaAplicacaoItem.addActionListener(this);
         generoLivroItem.addActionListener(this);
         // formaDePagamentoItem.addActionListener(this);
         estadoDoLivroItem.addActionListener(this);
@@ -141,6 +145,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         pesquisarLivroItem.addActionListener(this);
         pesquisarClienteItem.addActionListener(this);
+        pesquisarVendaItem.addActionListener(this);
         
         sair.addActionListener(this);
 
@@ -200,12 +205,17 @@ public class MenuPrincipal extends JFrame implements ActionListener {
             new PesquisarLivro();
         if (evt.getSource() == pesquisarClienteItem)
             new PesquisarCliente();
+        if (evt.getSource() == pesquisarVendaItem)
+            new PesquisarVenda();
 
         else if (evt.getSource() == sair)
             dispose();
+            
+        else if (evt.getSource() == ajudaAplicacaoItem)
+            new SobreOSoftware();
         else if (evt.getSource() == ajudaAutorItem)
             new SobreOAutor();
-
+    
     }
 
     /*public static void main(String[] args) {

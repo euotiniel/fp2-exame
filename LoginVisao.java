@@ -9,14 +9,12 @@ Data: 14.06.2024
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
 public class LoginVisao extends JFrame {
 
     private PainelCentro centro;
     private PainelSul sul;
 
     public LoginVisao() {
-
         getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
         getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
         ImageIcon appIcone = new ImageIcon(
@@ -24,10 +22,8 @@ public class LoginVisao extends JFrame {
         setIconImage(appIcone.getImage());
         setTitle("Entrar");
         setSize(420, 350);
-        // pack();
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+        setLocationRelativeTo(null);
     }
 
     class PainelCentro extends JPanel {
@@ -56,13 +52,6 @@ public class LoginVisao extends JFrame {
             gbc.anchor = GridBagConstraints.CENTER;
             add(iconeLivro, gbc);
 
-            // gbc.gridx = 0;
-            // gbc.gridy = 1;
-            // gbc.anchor = GridBagConstraints.CENTER;
-            // gbc.fill = GridBagConstraints.HORIZONTAL;
-            // add(textoJEP, gbc);
-
-            // Adicionando campos de login abaixo do texto
             gbc.gridx = 0;
             gbc.gridy = 2;
             gbc.anchor = GridBagConstraints.WEST;
@@ -87,19 +76,16 @@ public class LoginVisao extends JFrame {
             // Definir caracter de ocultar senha
             passwordJPF.setEchoChar('o');
 
-            passwordJPF.addKeyListener(new KeyAdapter() {
+            KeyAdapter loginKeyListener = new KeyAdapter() {
                 public void keyPressed(KeyEvent e) {
                     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                        String user = getNumber();
-                        if (loginValid()) {
-                            dispose();
-                            new MenuPrincipal(user);
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Número ou senha incorretos!");
-                        }
+                        realizarLogin();
                     }
                 }
-            });
+            };
+
+            numberJTF.addKeyListener(loginKeyListener);
+            passwordJPF.addKeyListener(loginKeyListener);
         }
 
         public String getNumber() {
@@ -112,6 +98,15 @@ public class LoginVisao extends JFrame {
 
         public boolean loginValid() {
             return getNumber().equals(correctNumber) && getPassword().equals(correctPassword);
+        }
+
+        private void realizarLogin() {
+            if (loginValid()) {
+                dispose();
+                new MenuPrincipal(getNumber());
+            } else {
+                JOptionPane.showMessageDialog(null, "Número ou senha incorretos!");
+            }
         }
     }
 
@@ -127,6 +122,7 @@ public class LoginVisao extends JFrame {
             Image entrarImagem = entrarIcon.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH); 
             entrarIcon = new ImageIcon(entrarImagem);
             entrarJB.setIcon(entrarIcon);
+            entrarJB.addActionListener(this);
         }
 
         public void actionPerformed(ActionEvent evt) {
@@ -138,9 +134,11 @@ public class LoginVisao extends JFrame {
                 } else {
                     JOptionPane.showMessageDialog(null, "Login inválido", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
-            } else {
-                dispose();
             }
         }
+    }
+
+    public static void main(String[] args) {
+        new LoginVisao();
     }
 }
