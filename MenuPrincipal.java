@@ -83,7 +83,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         operacoesMenu.add(eliminarClienteItem = new JMenuItem("Eliminar cliente"));
         operacoesMenu.addSeparator();
         operacoesMenu.add(novaVendaItem = new JMenuItem("Nova venda"));
-        operacoesMenu.add(editarVendaItem = new JMenuItem("Editar venda"));
+        //operacoesMenu.add(editarVendaItem = new JMenuItem("Editar venda"));
         operacoesMenu.add(eliminarVendaItem = new JMenuItem("Eliminar venda"));
 
         // Opções do menu Listagens
@@ -129,7 +129,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         listarClienteItem.addActionListener(this);
 
         novaVendaItem.addActionListener(this);
-        editarVendaItem.addActionListener(this);
+        // editarVendaItem.addActionListener(this);
         eliminarVendaItem.addActionListener(this);
         listarVendaItem.addActionListener(this);
 
@@ -173,6 +173,9 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         if (evt.getSource() == novaVendaItem)
             new VendaVisao(false, new VendaModelo());
+
+        if (evt.getSource() == eliminarVendaItem)
+            new EliminarVenda();
 
         if (evt.getSource() == generoLivroItem)
             Tabela2.editarNovosItems("Genero.tab", "Novo genero de livro");

@@ -107,7 +107,7 @@ public class VendaModelo implements RegistGeneric {
     public String toString () {
         String str = "Dados da venda \n\n";
 
-        str += "id: " + getId() + "\n";
+        str += "Código da venda: #00cdv" + getId() + "00\n";
         str += "Livro: " + getLivro() + "\n";
         str += "Cliente: " + getCliente() + "\n";
         str += "Quantidade: " + getQuantidade() + "\n";

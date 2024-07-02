@@ -81,12 +81,30 @@ public class VendaFile extends ObjectsFile {
         return titles;
     }
 
+    public static List<String> getBookCode() {
+        List<String> codes = new ArrayList<>();
+        LivroFile ficheiro = new LivroFile();
+        LivroModelo modelo = new LivroModelo();
+        try {
+            ficheiro.getStream().seek(4);
+            for (int i = 0; i < ficheiro.getNregistos(); ++i) {
+                modelo.read(ficheiro.getStream());
+                if (modelo.getStatus() == true && modelo.getQuantidadeEstoque() > 0) {
+                codes.add(Integer.toString(modelo.getId()));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return codes;
+    }
+
     public static List<String> getClientNames() {
         List<String> names = new ArrayList<>();
         ClienteFile ficheiro = new ClienteFile();
         ClienteModelo modelo = new ClienteModelo();
         try {
-            ficheiro.getStream().seek(4); 
+            ficheiro.getStream().seek(4);
             for (int i = 0; i < ficheiro.getNregistos(); ++i) {
                 modelo.read(ficheiro.getStream());
                 if (modelo.getStatus() == true) {
@@ -99,28 +117,28 @@ public class VendaFile extends ObjectsFile {
         return names;
     }
 
-    // public static StringVector getAllNames() {
-    // VendaFile ficheiro = new VendaFile();
-    // VendaModelo modelo = new VendaModelo();
-    // StringVector vector = new StringVector();
+    public static StringVector getAllNames() {
+    VendaFile ficheiro = new VendaFile();
+    VendaModelo modelo = new VendaModelo();
+    StringVector vector = new StringVector();
 
-    // try {
-    // ficheiro.stream.seek(4);
-    // for (int i = 0; i < ficheiro.getNregistos(); ++i){
-    // modelo.read(ficheiro.stream);
+    try {
+    ficheiro.stream.seek(4);
+    for (int i = 0; i < ficheiro.getNregistos(); ++i){
+    modelo.read(ficheiro.stream);
 
-    // if (modelo.getStatus() == true) {
-    // vector.add(modelo.getTitulo());
-    // }
-    // }
+    if (modelo.getStatus() == true) {
+    vector.add(modelo.getId());
+    }
+    }
 
-    // vector.sort();
-    // } catch (Exception ex) {
-    // ex.printStackTrace();
-    // }
+    vector.sort();
+    } catch (Exception ex) {
+    ex.printStackTrace();
+    }
 
-    // return vector;
-    // }
+    return vector;
+    }
 
     // public static StringVector getAllGenders() {
     // VendaFile ficheiro = new VendaFile();
@@ -142,29 +160,28 @@ public class VendaFile extends ObjectsFile {
     // return vector;
     // }
 
-    // public static VendaModelo getLivroPorTitulo(String tituloProcurado) {
-    // VendaFile ficheiro = new VendaFile();
-    // VendaModelo modelo = new VendaModelo();
+    public static VendaModelo getVendaPorCodigo(int vendaProcurada) {
+    VendaFile ficheiro = new VendaFile();
+    VendaModelo modelo = new VendaModelo();
 
-    // try {
-    // ficheiro.stream.seek(4);
-    // for (int i = 0; i < ficheiro.getNregistos(); ++i){
+    try {
+    ficheiro.stream.seek(4);
+    for (int i = 0; i < ficheiro.getNregistos(); ++i){
 
-    // modelo.read(ficheiro.stream);
+    modelo.read(ficheiro.stream);
 
-    // if (modelo.getTitulo().equalsIgnoreCase(tituloProcurado) &&
-    // modelo.getStatus() == true) {
-    // return modelo;
-    // }
-    // }
-    // } catch (Exception ex) {
-    // ex.printStackTrace();
-    // }
+    if (modelo.getId() == vendaProcurada && modelo.getStatus() == true) {
+    return modelo;
+    }
+    }
+    } catch (Exception ex) {
+    ex.printStackTrace();
+    }
 
-    // return modelo;
-    // }
+    return modelo;
+    }
 
-    public static List<String> PesquisarVendaPorNome(String livroProcurado) {
+    public static List<String> PesquisarVendaPorNome(int codigoProcurado) {
         List<String> titles = new ArrayList<>();
         VendaFile ficheiro = new VendaFile();
         VendaModelo modelo = new VendaModelo();
@@ -174,14 +191,11 @@ public class VendaFile extends ObjectsFile {
 
                 modelo.read(ficheiro.stream);
 
-                if (modelo.getLivro().equalsIgnoreCase(livroProcurado) && modelo.getStatus() == true) {
+                if (modelo.getId() == codigoProcurado && modelo.getStatus() == true) {
                     JOptionPane.showMessageDialog(null, modelo.toString());
                     break;
                 }
             }
-
-            JOptionPane.showMessageDialog(null, "Livro não encontrado", "Not found", JOptionPane.ERROR_MESSAGE);
-
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -262,30 +276,30 @@ public class VendaFile extends ObjectsFile {
         }
     }
 
-    // public void eliminarDados (VendaModelo modelo_novo) {
-    // VendaModelo modelo_antigo = new VendaModelo();
+    public void eliminarDados (VendaModelo modelo_novo) {
+    VendaModelo modelo_antigo = new VendaModelo();
 
-    // try {
-    // stream.seek(4);
+    try {
+    stream.seek(4);
 
-    // for (int i = 0; i < getNregistos(); ++i) {
+    for (int i = 0; i < getNregistos(); ++i) {
 
-    // modelo_antigo.read(stream);
+    modelo_antigo.read(stream);
 
-    // if (i == 0 && modelo_antigo.getId() == modelo_novo.getId()) {
-    // stream.seek(4);
-    // modelo_novo.write(stream);
-    // JOptionPane.showMessageDialog(null, "Livro elimados com sucesso.");
-    // return;
-    // } else {
-    // if (modelo_antigo.getId() + 1 == modelo_novo.getId()) {
-    // modelo_novo.write(stream);
-    // return;
-    // }
-    // }
-    // }
-    // } catch (Exception ex) {
-    // ex.printStackTrace();
-    // }
-    // }
+    if (i == 0 && modelo_antigo.getId() == modelo_novo.getId()) {
+    stream.seek(4);
+    modelo_novo.write(stream);
+    JOptionPane.showMessageDialog(null, "Livro elimados com sucesso.");
+    return;
+    } else {
+    if (modelo_antigo.getId() + 1 == modelo_novo.getId()) {
+    modelo_novo.write(stream);
+    return;
+    }
+    }
+    }
+    } catch (Exception ex) {
+    ex.printStackTrace();
+    }
+    }
 }

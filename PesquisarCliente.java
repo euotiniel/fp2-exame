@@ -22,7 +22,9 @@ public class PesquisarCliente extends JFrame {
 
         getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
         getContentPane().add(sul = new PainelSul(), BorderLayout.SOUTH);
-
+        ImageIcon appIcone = new ImageIcon(
+            "C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\book.png");
+    setIconImage(appIcone.getImage());
         // setSize(400, 300);
         pack();
         setLocationRelativeTo(null);
@@ -88,6 +90,11 @@ public class PesquisarCliente extends JFrame {
 
         public PainelSul() {
             add(pesquisarJB = new JButton("Pesquisar cliente"));
+            ImageIcon createIcon = new ImageIcon(
+					"C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\add.png");
+			Image createImagem = createIcon.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
+			createIcon = new ImageIcon(createImagem);
+			pesquisarJB.setIcon(createIcon);
             pesquisarJB.addActionListener(this);
         }
 
