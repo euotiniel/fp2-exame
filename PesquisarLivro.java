@@ -111,7 +111,7 @@ public class PesquisarLivro extends JFrame {
         public PainelSul() {
             add(pesquisarJB = new JButton("Pesquisar livro"));
             ImageIcon createIcon = new ImageIcon(
-					"C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\add.png");
+					"C:\\Users\\euotinielpc\\Documents\\UCAN\\Proj\\FP2\\OtonielEmanuel33039\\images\\magnifier.png");
 			Image createImagem = createIcon.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
 			createIcon = new ImageIcon(createImagem);
 			pesquisarJB.setIcon(createIcon);

@@ -16,25 +16,25 @@ import java.io.*;
 public class ClienteModelo implements RegistGeneric {
 
     int id;
-    StringBufferModelo nome, email, telefone, provincia, municipio, comuna;
+    StringBufferModelo nome, telefone, email, provincia, municipio, comuna;
     private boolean status;
 
     public ClienteModelo() {
         id = 0;
         nome = new StringBufferModelo("", 100 );
-        email = new StringBufferModelo("", 254);
         telefone = new StringBufferModelo("", 13);
+        email = new StringBufferModelo("", 254);
         provincia = new StringBufferModelo("", 20);
         municipio = new StringBufferModelo("", 20);
         comuna = new StringBufferModelo("", 20);
         status = false;
     }
 
-    public ClienteModelo(int id, String nome, String email, String telefone, String provincia, String municipio, String comuna, boolean status) {
+    public ClienteModelo(int id, String nome, String telefone, String email, String provincia, String municipio, String comuna, boolean status) {
         this.id = id;
         this.nome = new StringBufferModelo(nome, 100);
-        this.email = new StringBufferModelo(email, 254);
         this.telefone = new StringBufferModelo(telefone, 13);
+        this.email = new StringBufferModelo(email, 254);
         this.provincia = new StringBufferModelo(provincia, 20);
         this.municipio = new StringBufferModelo(municipio, 20);
         this.comuna = new StringBufferModelo(comuna, 20);
@@ -51,12 +51,12 @@ public class ClienteModelo implements RegistGeneric {
         return nome.toStringEliminatingSpaces();
     }
 
-    public String getEmail() {
-        return email.toStringEliminatingSpaces();
-    }
-
     public String getTelefone() {
         return telefone.toStringEliminatingSpaces();
+    }
+
+    public String getEmail() {
+        return email.toStringEliminatingSpaces();
     }
 
     public String getProvincia() {
@@ -85,12 +85,12 @@ public class ClienteModelo implements RegistGeneric {
         nome = new StringBufferModelo(novoNome, 100);
     }
 
-    public void setEmail(String novoEmail) {
-        email = new StringBufferModelo(novoEmail, 254);
-    }
-
     public void setTelefone(String novoTelefone) {
         telefone = new StringBufferModelo(novoTelefone, 13);
+    }
+
+    public void setEmail(String novoEmail) {
+        email = new StringBufferModelo(novoEmail, 254);
     }
 
     public void setProvincia(String novaProvincia) {
@@ -117,8 +117,8 @@ public class ClienteModelo implements RegistGeneric {
 
         str += "id: " + getId() + "\n";
         str += "Nome: " + getNome() + "\n";
-        str += "Email: " + getEmail() + "\n";
         str += "Telefone: " + getTelefone() + "\n";
+        str += "Email: " + getEmail() + "\n";
         str += "Provincia: " + getProvincia() + "\n";
         str += "Municipio: " + getMunicipio() + "\n";
         str += "Comuna: " + getComuna() + "\n";
@@ -139,10 +139,10 @@ public class ClienteModelo implements RegistGeneric {
 
     public void write(RandomAccessFile stream) {
         try {
-            stream.writeInt(id);
+        stream.writeInt(id);
         nome.write(stream);
-        email.write(stream);
         telefone.write(stream);
+        email.write(stream);
         provincia.write(stream);
         municipio.write(stream);
         comuna.write(stream);
@@ -157,8 +157,8 @@ public class ClienteModelo implements RegistGeneric {
         try {
             id = stream.readInt();
         nome.read(stream);
-        email.read(stream);
         telefone.read(stream);
+        email.read(stream);
         provincia.read(stream);
         municipio.read(stream);
         comuna.read(stream);

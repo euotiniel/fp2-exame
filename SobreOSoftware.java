@@ -24,7 +24,7 @@ public class SobreOSoftware extends JFrame {
         setIconImage(appIcone.getImage());
         setTitle("Sobre o software");
         // pack();
-        setSize(460, 400);
+        setSize(460, 420);
         setLocationRelativeTo(null);
         setVisible(true);
     }

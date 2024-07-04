@@ -40,7 +40,7 @@ public class EliminarVenda extends JFrame {
         public PainelCentro() {
             setLayout(new GridLayout(6, 2));
             group = new ButtonGroup();
-            add(searchTitulo = new JRadioButton("Título", true));
+            add(searchTitulo = new JRadioButton("Código da venda", true));
             add(searchVoid = new JViewport());
 
             group.add(searchTitulo);
