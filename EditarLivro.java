@@ -125,12 +125,15 @@ public class EditarLivro extends JFrame {
                 if (centro.getTipoPesquisa() == 1) {
                     modelo = LivroFile.getLivroPorTitulo(centro.getTituloProcurado());
                     new LivroVisao(true, modelo);
+                    dispose();
                 } else if (centro.getTipoPesquisa() == 2) {
                     modelo = LivroFile.getLivroPorAutor(centro.getAutorProcurado());
                     new LivroVisao(true, modelo);
+                    dispose();
                 } else if (centro.getTipoPesquisa() == 3) {
                     modelo = LivroFile.getLivroPorGenero(centro.getGeneroProcurado());
                     new LivroVisao(true, modelo);
+                    dispose();
                 }
             }
         }

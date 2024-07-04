@@ -55,14 +55,22 @@ Este projecto tem o objectivo de gerir a venda de livros, incluindo o registo de
 
 5. Tabelas de Apoio (Auxiliares) = Entidades Fracas
 - Genero.tab
-- FormaDePagamento.tab
 - EstadoDoLivro.tab
 
 6. Listagens e Pesquisas
 - Listar todos os livros
 - Listagem por titulo
+- Listagem por autor
+- Listagem por genero
+
+- Listar todos os clientes
+- Listagem por nome
+- Listagem por telefone
+
+- Listar todas as venda
+- Listagem por código de venda
 
 7. Diversos
 7.1 - Implementação: Java Swing
-7.2 - IDE: Notepad++
+7.2 - IDE: Notepad++ ou VSCode
 */

@@ -101,10 +101,12 @@ public class EditarCliente extends JFrame {
                 if (centro.getTipoPesquisa() == 1) {
                     modelo = ClienteFile.getClientePorNome(centro.getNomeProcurado());
                     new ClienteVisao(true, modelo);
+                    dispose();
 
                 } else if (centro.getTipoPesquisa() == 2) {
                     modelo = ClienteFile.getClientePorTelefone(centro.getTelefoneProcurado());
                     new ClienteVisao(true, modelo);
+                    dispose();
                 }
             }
         }
