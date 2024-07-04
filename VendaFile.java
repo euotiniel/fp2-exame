@@ -83,13 +83,13 @@ public class VendaFile extends ObjectsFile {
 
     public static List<String> getBookCode() {
         List<String> codes = new ArrayList<>();
-        LivroFile ficheiro = new LivroFile();
-        LivroModelo modelo = new LivroModelo();
+        VendaFile ficheiro = new VendaFile();
+        VendaModelo modelo = new VendaModelo();
         try {
             ficheiro.getStream().seek(4);
             for (int i = 0; i < ficheiro.getNregistos(); ++i) {
                 modelo.read(ficheiro.getStream());
-                if (modelo.getStatus() == true && modelo.getQuantidadeEstoque() > 0) {
+                if (modelo.getStatus() == true) {
                 codes.add(Integer.toString(modelo.getId()));
                 }
             }

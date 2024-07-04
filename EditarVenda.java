@@ -2,7 +2,7 @@
 Tema: Gestão de uma Livraria
 Nome: Otoniel Emanuel
 Numero: 33039
-Ficheiro: PesquisarVenda.java
+Ficheiro: EditarVenda.java
 Data: 01.07.2024
 --------------------------------------*/
 
@@ -12,18 +12,12 @@ import java.awt.event.*;
 import SwingComponents.*;
 import Calendario.*;
 
-import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-public class PesquisarVenda extends JFrame {
+public class EditarVenda extends JFrame {
 
     PainelCentro centro;
     PainelSul sul;
 
-    public PesquisarVenda() {
+    public EditarVenda() {
         super("Pesquisar venda");
 
         getContentPane().add(centro = new PainelCentro(), BorderLayout.CENTER);
@@ -89,8 +83,11 @@ public class PesquisarVenda extends JFrame {
         }
 
         public void actionPerformed(ActionEvent evt) {
+            VendaModelo modelo;
+
             if (evt.getSource() == pesquisarJB) {
-                    VendaFile.PesquisarVendaPorNome(centro.codigoProcurado());
+                modelo = VendaFile.getVendaPorCodigo(centro.codigoProcurado());
+                new VendaVisao(true, modelo);       
             }
         }
     }

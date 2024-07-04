@@ -83,14 +83,14 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         operacoesMenu.add(eliminarClienteItem = new JMenuItem("Eliminar cliente"));
         operacoesMenu.addSeparator();
         operacoesMenu.add(novaVendaItem = new JMenuItem("Nova venda"));
-        //operacoesMenu.add(editarVendaItem = new JMenuItem("Editar venda"));
+        operacoesMenu.add(editarVendaItem = new JMenuItem("Editar venda"));
         operacoesMenu.add(eliminarVendaItem = new JMenuItem("Eliminar venda"));
 
         // Opções do menu Listagens
         listagemMenu.add(listarLivroItem = new JMenuItem("Listar livros"));
-        listagemMenu.addSeparator();
+        // listagemMenu.addSeparator();
         listagemMenu.add(listarClienteItem = new JMenuItem("Listar clientes"));
-        listagemMenu.addSeparator();
+        // listagemMenu.addSeparator();
         listagemMenu.add(listarVendaItem = new JMenuItem("Listar vendas"));
 
         // Opções do menu Pesquisas
@@ -129,7 +129,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         listarClienteItem.addActionListener(this);
 
         novaVendaItem.addActionListener(this);
-        // editarVendaItem.addActionListener(this);
+        editarVendaItem.addActionListener(this);
         eliminarVendaItem.addActionListener(this);
         listarVendaItem.addActionListener(this);
 
@@ -173,6 +173,9 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         if (evt.getSource() == novaVendaItem)
             new VendaVisao(false, new VendaModelo());
+
+        if (evt.getSource() == editarVendaItem)
+            new EditarVenda();
 
         if (evt.getSource() == eliminarVendaItem)
             new EliminarVenda();

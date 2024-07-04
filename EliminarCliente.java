@@ -118,6 +118,7 @@ public class EliminarCliente extends JFrame {
                         // eliminar
                         modelo.setStatus(false);
                         new ClienteFile().elimiarDados(modelo);
+                        dispose();
                     }
                 }
             }
